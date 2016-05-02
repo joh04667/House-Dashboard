@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="BlondegalowApp">
   <head>
     <meta charset="utf-8">
-    <title>MEAN stack app</title>
+    <title>Welcome to the Blondegalow!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/index.css">
     <script src="vendor/angular/angular.min.js"></script>
-    <script src="assets/scripts/client.min.js"></script>
+    <script src="assets/scripts/login.js"></script>
   </head>
   <body>
-    
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner" ng-controller="LoginController">
+
+
+        <form>
+          <header>Welcome to the Blondegalow!</header>
+          <label>Username <span>*</span></label>
+          <input ng-model="user.username" required/>
+          <div class="help">At least 6 characters</div>
+          <label>Password <span>*</span></label>
+          <input type="password" ng-model="user.password" required/>
+          <div class="help">change this to error?</div>
+          <div class="register">Need an account? <a href="/register">Register Here</a></div>
+          <button ng-click="login()">Login</button>
+        </form>
+
+
+
+      </div>
+    </div>
+
+
   </body>
 </html>

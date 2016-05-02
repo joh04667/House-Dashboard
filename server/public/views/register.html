@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="BlondegalowApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="assets/scripts/login.js"></script>
+  </head>
+  <body>
+<div class="site-wrapper">
+    <form ng-controller="RegisterController">
+      <header class="new">Please Register an Account</header>
+      <label>Choose a username: </label>
+      <input ng-model="user.username" required/>
+      <div class="help">At least 6 characters</div>
+      <label>Your First Name: </label>
+      <input ng-model="user.display_name" required/>
+      <div class="error" ng-show="pwMatchError">Error: Passwords did not match</div>
+      <label>Choose a password: </label>
+      <input ng-model="user.password" type="password" required/>
+      <div class="help">At least 6 characters</div>
+      <label>Confirm password: </label>
+      <input ng-model="user.verifyPassword" type="password" required/>
+      <button ng-click="register()">Register</button>
+    </form>
+</div>
+
+  </body>
+  </html>

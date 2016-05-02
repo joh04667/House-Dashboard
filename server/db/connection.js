@@ -20,7 +20,7 @@ function initializeDB(){
     } else {
 
         var query = client.query(
-          'CREATE TABLE IF NOT EXISTS user(' +
+          'CREATE TABLE IF NOT EXISTS users(' +
           'id SERIAL PRIMARY KEY,' +
           'username varchar(255) NOT NULL,' +
           'password varchar(255) NOT NULL,' +
@@ -37,7 +37,7 @@ function initializeDB(){
         'CREATE TABLE IF NOT EXISTS post(' +
         'id SERIAL PRIMARY KEY,' +
         'message TEXT NOT NULL,' +
-        'user_id INT REFERENCES user(id));'
+        'user_id INT REFERENCES users(id));'
       );
       query.on('end', function(){
         console.log('posts table created');
@@ -50,7 +50,7 @@ function initializeDB(){
         'task varchar(255) NOT NULL,' +
         'date_added DATE NOT NULL,' +
         'date_completed DATE,' +
-        'user_id INT REFERENCES user(id));'
+        'user_id INT REFERENCES users(id));'
       );
       query.on('end', function(){
         console.log('chores table created');

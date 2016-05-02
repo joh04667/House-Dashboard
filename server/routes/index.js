@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var path = require('path');
+var passport = require('passport'); 
 
 
 
@@ -10,6 +11,11 @@ router.get('/', function(request, response) {
 });
 
 
-
+router.post('/',
+  passport.authenticate('local', {
+    successRedirect: '/main', // these should point to pages
+    failureRedirect: '/'
+  })
+);
 
 module.exports = router;

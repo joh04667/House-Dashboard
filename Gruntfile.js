@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
       scripts: {
-        files: ['client/client.js'],
+        files: ['client/*.js'],
         tasks: ['uglify', 'copy'],
         options: {
           spawn: false,
@@ -16,8 +16,12 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'client/client.js',
-        dest: 'server/public/assets/scripts/client.min.js'
+        files: [{
+        expand: true,
+        src: '*.js',
+        dest: 'server/public/assets/scripts',
+        cwd: './client'
+       }]
       }
     },
     copy: {
