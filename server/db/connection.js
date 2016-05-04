@@ -1,4 +1,6 @@
 var pg = require('pg');
+var exec = require('child_process');
+
 
 var connectionString;
 
@@ -55,11 +57,14 @@ function initializeDB(){
       query.on('end', function(){
         console.log('chores table created');
         done();
-      })
+      });
 
     }
   });
 }
+// var installSession = exec.execSync('psql ' + connectionString + ' < node_modules/connect-pg-simple/table.sql');
+// create session table
+
 
 module.exports.connectionString = connectionString;
 module.exports.initializeDB = initializeDB;

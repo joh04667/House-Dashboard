@@ -1,0 +1,2 @@
+/*! blondegalow-calendar 2016-05-04 */
+var app=angular.module("MainApp",[]);app.factory("UserService",["$http",function(a){var b={},c=function(){a.get("/auth").then(function(a){console.log(a),b.info=a.data,console.log("user is",b.info)})};return{user:b,getUserData:c}}]),app.controller("HeaderController",["UserService","$scope","$http",function(a,b,c){a.getUserData(),b.user=a.user}]),app.controller("WhoIsHomeController",["UserService","$scope","$http",function(a,b,c){b.user=a.user,console.log("this is",b.user,a.user)}]);

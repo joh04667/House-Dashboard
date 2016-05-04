@@ -1,26 +1,23 @@
-var app = angular.module('BlondegalowApp', []);
+var app = angular.module('LoginApp', []);
 
-app.factory('UserService', [function() {  // TODO: do i need a whole service? may be useful for hiding certain things
-    var sdo = {
-        isLogged: false,
-        username: ''
-    };
-    return sdo;
-}]);
 
-app.controller('LoginController', ['UserService','$scope', '$http', '$location', function(UserService, $scope, $http, $location) {
+
+app.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
   $scope.user = {};
-  var User = UserService;
+  $scope.error = false;
 
   $scope.login = function() {
+    $scope.error = false;
     console.log($scope.user);
     $http.post('/', $scope.user).then(function(response) {
       console.log(response);
       if(response.status === 269) {
       window.location.assign('/main');
     }
-      //TODO: how to redirect?
+      if(respone.status === 301) {
+      $scope.error = true;
+      }
     });
   };
 
@@ -50,7 +47,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
         } else {
           $scope.error = {};
           $http({
-            method: 'put',
+            method: 'post',
             url: '/register',
             data: $scope.user
           }).then(function successCallback(response) {

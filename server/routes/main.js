@@ -6,7 +6,11 @@ var path = require('path');
 
 
 router.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, '../public/views/main.html'));
+  if(request.isAuthenticated()) {
+    response.sendFile(path.join(__dirname, '../public/views/main.html'));
+  } else {
+    response.redirect('/');
+  }
 });
 
 
