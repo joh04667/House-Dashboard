@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var path = require('path');
-var passport = require('passport'); 
-
+var passport = require('passport');
+var flash = require('connect-flash');
 
 
 
@@ -13,8 +13,9 @@ router.get('/', function(request, response) {
 
 router.post('/',
   passport.authenticate('local', {
-    successRedirect: '/main', // these should point to pages
-    failureRedirect: '/'
+    successRedirect: '/success',
+    failureRedirect: '/fail',
+    failureFlash: true
   })
 );
 

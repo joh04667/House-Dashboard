@@ -18,7 +18,7 @@
       <div class="help">At least 6 characters</div>
       <label>Your First Name: </label>
       <input ng-model="user.display_name" required/>
-      <div class="error" ng-show="pwMatchError">Error: Passwords did not match</div>
+      <div class="error" ng-show="error.pwMatch">Error: Passwords did not match</div>
       <label>Choose a password: </label>
       <input ng-model="user.password" type="password" required/>
       <div class="help">At least 6 characters</div>

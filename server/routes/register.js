@@ -25,6 +25,19 @@ router.post('/', function(req, res, next) {
 
     console.log('Creating user', user);
 
+    var query = client.query('SELECT username FROM users WHERE username= $1;', [user.username]);
+    var results = [];
+    query.on('row', function(rowData) {
+      results.push(rowData);
+    });
+    query.on('end', function() {
+      console.log('checked for username, results', results);
+      if(results !== []) {
+        res.sendStatus(418);
+      }
+    });
+
+    if(results === []) {
     var query = client.query('INSERT INTO users (username, password, display_name, active, permissions) VALUES ($1, $2, $3, true, $4)', [user.username, user.password, user.display_name, "user"]);
 
     query.on('error', function(err) {console.log(err);});
@@ -33,7 +46,7 @@ router.post('/', function(req, res, next) {
       res.sendStatus(200);
       client.end();
     });
-
+   }
   });
 });
 

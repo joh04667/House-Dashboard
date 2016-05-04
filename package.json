@@ -9,6 +9,7 @@
     "bcrypt": "^0.8.6",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
+    "connect-flash": "^0.1.1",
     "crypt": "0.0.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",

@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var pg = require('pg');
+var flash = require('connect-flash');
 var initializeDB = require('./db/connection').initializeDB;
 var connectionString = require('./db/connection').connectionString;
 
@@ -19,12 +20,15 @@ var port = process.env.PORT || 3000;
 var index = require('./routes/index');
 var main = require('./routes/main');
 var register = require('./routes/register');
+var success = require('./routes/success');
+var fail = require('./routes/fail');
 
 //////////// config /////////////
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
-
+app.use(flash());
 initializeDB();
+
 
 app.use(session({
   secret: 'secret',
@@ -40,6 +44,9 @@ app.use(passport.session()); // start passport session listener
 app.use('/', index);
 app.use('/main', main);
 app.use('/register', register);
+app.use('/success', success);
+app.use('/fail', fail);
+
 
 
 ///////// OAUTH session starts ///////
@@ -57,20 +64,24 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
               console.log('User obj', row, 'Password', password);
               user = row;
 
-              console.log('compare', encryptLib.comparePassword(password, user.password));
             });
 
             // close connection after data get
             query.on('end', function() {
-              client.end();
-              if(encryptLib.comparePassword(password, user.password)) {
+              console.log(user, 'user');
+              if(!user.username) {
+                console.log('first if');
+                done(null, false, {message: req.flash('Incorrect username')});
+
+              } else if(encryptLib.comparePassword(password, user.password)) {
                 console.log('match!');
                 done(null, user);
               } else {
-                done(null, false, {message: 'Incorrect username and password.'});
+                done(null, false, {message: req.flash('Incorrect username and password.')});
               }
-            });
+              client.end();
 
+            });
             //error handling
             if(err){console.log(err);}
         });
