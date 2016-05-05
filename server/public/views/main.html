@@ -13,27 +13,48 @@
   <body>
 
   <header class="top" ng-controller="HeaderController">
+    <div class="headerText">
     <h3>Welcome, {{user.info.display_name}}</h3>
+    </div>
+    <a href="#"><div href="#" class="logout hvr-rectangle-out">
+      <h6>Logout</h6>
+    </div></a>
   </header>
 
-  <div class="spacer"></div>
+  <div class="spacer clearfix"></div>
 
   <div class="view container-fluid">
-      <div class="col-md-4 column left">
-        <div ng-controller="WhoIsHomeController">
-seriously
-{{user.info.display_name}}
-        </div>
+      <div class="col-sm-4 column left">
+          <div class="floatbox whoIsHome" ng-controller="WhoIsHomeController">
+            <div class="title whoIsHome">
+              <h5>Who is home?</h5>
+            </div>
+            <div class="table">
+             <table>
+              <tr ng-repeat="person in house track by $index"><td>{{person}}</td></tr>
 
+             </table>
+            </div>
+
+          </div>
+
+          <div class="floatbox" ng-controller="WhoIsHomeController">
+            <div class="title fitbit">
+              <h5>FitBit Leaderboard</h5>
+            </div>
+            <div class="fitbit">
+            </div>
+
+          </div>
       </div>
 
-      <div class="col-md-4 column middle">
+      <div class="col-xs-6 col-sm-4 column middle">
 
     i hate css
 
       </div>
 
-      <div class="col-md-4 column right">
+      <div class="col-xs-6 col-sm-4 column right">
       ok now
 
       </div>

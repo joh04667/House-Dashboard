@@ -1,7 +1,7 @@
 html, body{
   height: 100%;
   margin: 0;
-  color: grey;
+  background-color: #dbdbdb;
 }
 
 .top {
@@ -10,10 +10,30 @@ html, body{
   left: 0;
   width: 100%;
   height: 60px;
-  background-color: #222;
+  background: #232c35 url('../images/bg-texture.png') repeat fixed;
   color: white;
   display: flex;
   z-index: 1000;
+  text-align: right;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.75);
+}
+
+.headerText {
+  float: right;
+  margin: auto 20px;
+  position:absolute;
+}
+
+.logout {
+  text-align: center;
+  padding: 14px 20px;
+  width: 10%;
+  right: 0;
+  top:0;
+  display: inline-block;
+  position: fixed;
+  border-left: 2px solid grey;
+  color: white;
 }
 
 
@@ -30,13 +50,83 @@ footer {
   height: 100%;
   width: 100%;
   margin-top: 60px;
+  overflow-y: auto;
 }
 
-.column {
-  min-height: 100%;
+.right, .middle{
+  min-height: 85%;
   margin-bottom: -35px;
   /*just build stuff*/
-  background-color: tan;
+  background-color: #f4f4f4;
   border-left: 1px solid black;
 
+}
+
+.floatbox {
+  min-height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.75);
+  margin: 15px 0 25px 0;
+
+  padding: 0 0 10px 0;
+}
+
+.floatbox .title {
+  text-align: center;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.5);
+  color: white;
+  text-shadow: 0 0 2px rgba(0,0,0,.5);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.whoIsHome .title {
+  background-color: #661406;
+}
+
+ .fitbit {
+  background-color: #4AC1C0;
+}
+
+.table {
+  height: 228px;
+  border: 1px inset lightgray;
+  margin: 12.5px;
+  width: auto;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.table tr {
+  border: 1px solid #dedede;
+  border-collapse: collapse;
+  padding: 5px;
+  width: inherit;
+  height: 25px;
+  }
+
+
+table, .table td {
+  width: 100%;
+}
+.table tr:nth-child(even) {
+  background-color: #dedede;
+}
+
+.table tr:nth-child(odd) {
+  background-color: white;
+}
+
+.table tr:first-child, {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+
+.table tr:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

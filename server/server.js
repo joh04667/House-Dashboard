@@ -36,10 +36,10 @@ app.use(session({
   //   // pg: pg,
   //   conString: connectionString,
   // }),
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET || 'keyboard cat',
   resave: true,
   saveUninitialized: false,
-  cookie: {maxAge: 60000, secure: false}
+  cookie: {maxAge: 600000, secure: false}
 }));
 
 app.use(passport.initialize()); // start passport

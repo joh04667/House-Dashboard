@@ -11,7 +11,7 @@ app.factory('UserService', ['$http', function($http) {
         user.info = response.data;
         console.log('user is', user.info);
       });
-    }
+    };
 
       return {
         user: user,
@@ -22,7 +22,7 @@ app.factory('UserService', ['$http', function($http) {
 app.controller('HeaderController', ['UserService', '$scope', '$http', function(UserService, $scope, $http) {
 
   UserService.getUserData();
-  $scope.user = UserService.user
+  $scope.user = UserService.user;
 
 
 }]); // Header Control End
@@ -30,8 +30,18 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', function(U
 
 app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', function(UserService, $scope, $http) {
 
-          $scope.user = UserService.user
+          $scope.user = UserService.user;
           console.log('this is', $scope.user, UserService.user);
-          // console.log('dis name', $scope.UserService.user.display_name, UserService);
+
+          $scope.house = [];
+
+          $scope.getRouterData = function() {
+            // get mac addresses here
+            while($scope.house.length <= 8) {
+              $scope.house.push("");
+            }
+          }
+
+          $scope.getRouterData();
 
 }]); //who is home control end
