@@ -9,12 +9,6 @@ var app = express();
 var pg = require('pg');
 var connectionString = require('../db/connection').connectionString;
 
-// app.use(session({
-//   secret: 'secret',
-//   resave: true,
-//   saveUninitialized: false,
-//   cookie: {maxAge: 60000, secure: false}
-// }));
 
 
 router.get('/', function(request, response) {
@@ -45,7 +39,7 @@ router.get('/auth', function(req, res, next) {
         user = row;
       });
       query.on('end', function() {
-        client.end();
+        // client.end();
         console.log(user);
         res.send({username: user.username, display_name: user.display_name, id: user.id, permissions: user.permissions, isLogged: passport.authenticate()});
         done();
@@ -53,4 +47,12 @@ router.get('/auth', function(req, res, next) {
     }
   });
 });
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.sendFile(path.join(__dirname, '../public/views/index.html'));
+});
+
+
+
 module.exports = router;

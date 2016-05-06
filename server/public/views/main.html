@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/main.css">
     <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-route.min.js"></script>
     <script src="assets/scripts/main.js"></script>
+
+    <base href="/">
   </head>
   <body>
 
@@ -16,7 +19,7 @@
     <div class="headerText">
     <h3>Welcome, {{user.info.display_name}}</h3>
     </div>
-    <a href="#"><div href="#" class="logout hvr-rectangle-out">
+    <a href="/logout" target="_self"><div class="logout hvr-rectangle-out">
       <h6>Logout</h6>
     </div></a>
   </header>
@@ -48,14 +51,21 @@
           </div>
       </div>
 
-      <div class="col-xs-6 col-sm-4 column middle">
+      <div class="col-xs-12 col-sm-8 column middle">
+        <div class="subnav" ng-controller="HeaderController">
+          <a href="/main"><div class="subheading"><h6>Messages</h6></div></a>
+          <a href="/calendar"><div class="subheading"><h6>Calendar</h6></div></a>
+          <a href="/chores"><div class="subheading"><h6>Chores</h6></div></a>
+          <a href="/calendar"><div class="subheading"><h6>Messages</h6></div></a>
+          <a href="/calendar"><div class="subheading"><h6>Messages</h6></div></a>
 
-    i hate css
+        </div>
+        <div ng-view>
+
+        </div>
 
       </div>
 
-      <div class="col-xs-6 col-sm-4 column right">
-      ok now
 
       </div>
 

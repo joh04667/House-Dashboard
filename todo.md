@@ -11,7 +11,7 @@
     -one for messages
     -one for calendar (main)
     -one for chores/groceries
--make logout button functional
+~~-make logout button functional~~
 -develop admin page
 
 -database for telnet login and mac addresses

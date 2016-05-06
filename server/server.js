@@ -52,6 +52,10 @@ app.use('/register', register);
 app.use('/success', success);
 app.use('/fail', fail);
 
+app.get('/*', function(req, res){
+  res.sendFile(__dirname + '/public/views/main.html');
+});
+
 
 
 ///////// OAUTH session starts ///////

@@ -36,6 +36,39 @@ html, body{
   color: white;
 }
 
+.subnav {
+  height: 52px;
+  width: 100%;
+  background-color: black;
+  box-shadow: 0 5px 2px -2px rgba(0,0,0,.5);
+  border-bottom: 1px solid darkgrey;
+  background: grey url('http://www.youdiamonds.com/wp-content/uploads/2015/04/youdiamonds-newbg3.jpg') fixed repeat;
+
+}
+
+.subheading {
+  text-align: center;
+  color: white;
+  width: 20%;
+  float: left;
+  height: 52px;
+  vertical-align: middle;
+  padding-top: 20px;
+  border-right: 2px groove #dbdbdb;
+  text-shadow: 0 0 5px rgba(0,0,0,.75);
+  transition: color .5s ease-out, border-bottom .5s, text-shadow .5s;
+
+}
+
+.subheading:hover {
+  color: #661406;
+  text-shadow: white;
+  border-bottom: 2px solid #661406;
+}
+
+.subheading h6 {
+  margin: auto;
+}
 
 footer {
   bottom: 0;
@@ -53,13 +86,13 @@ footer {
   overflow-y: auto;
 }
 
-.right, .middle{
+.middle{
   min-height: 85%;
   margin-bottom: -35px;
   /*just build stuff*/
   background-color: #f4f4f4;
   border-left: 1px solid black;
-
+  padding: 0;
 }
 
 .floatbox {
@@ -112,11 +145,11 @@ footer {
 table, .table td {
   width: 100%;
 }
-.table tr:nth-child(even) {
+.table tr:nth-child(odd) {
   background-color: #dedede;
 }
 
-.table tr:nth-child(odd) {
+.table tr:nth-child(even) {
   background-color: white;
 }
 
