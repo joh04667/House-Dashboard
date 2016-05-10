@@ -3,7 +3,7 @@
 </div>
  <div class="messages">
   <div class="messageContainer">
-    <div class="message" ng-repeat="post in posts">
+    <div class="messageBox" ng-repeat="post in posts">
       <div class="messageTitle">
         <p><strong>{{post.display_name}}</strong> on {{post.date | date:'mediumDate'}}:</p>
         <div ng-if="user.info.permissions == 'admin'" class="remove" ng-click="remove(post)">
@@ -14,7 +14,6 @@
       <div class="messageContent">
       <p>{{post.message}}</p>
       </div>
-      <hr>
 
     </div>
 
@@ -25,7 +24,7 @@
     <h2>Leave us a message!</h2>
     <div>
       <label>Title</label>
-      <input type="text" ng-model="title" class="messageTitle" required>
+      <input type="text" ng-model="title" class="newmessageTitle" required>
     </div>
     <div>
       <label>Message</label>

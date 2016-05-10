@@ -1,4 +1,4 @@
-var app = angular.module("MainApp", ['ngRoute']);
+var app = angular.module("MainApp", ['ngRoute', "ngMaterial", "ngAnimate"]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -126,6 +126,30 @@ app.controller('MessageController', ['UserService', '$scope', '$http', '$route',
 }]); // message control end
 
 app.controller('CalendarController', ['UserService', '$scope', '$http', '$route', function(UserService, $scope, $http, $route) {
+
+      $scope.selectedDate = null;
+      $scope.firstDayOfWeek = 0;
+      $scope.setDirection = function(direction) {
+        $scope.direction = direction;
+      };
+      $scope.dayClick = function(date) {
+        $scope.msg = "You clicked " + $filter("date")(date, "MMM d, y h:mm:ss a Z");
+      };
+      $scope.prevMonth = function(data) {
+        $scope.msg = "You clicked (prev) month " + data.month + ", " + data.year;
+      };
+      $scope.nextMonth = function(data) {
+        $scope.msg = "You clicked (next) month " + data.month + ", " + data.year;
+      };
+      $scope.setDayContent = function(date) {
+        // You would inject any HTML you wanted for
+        // that particular date here.
+          return "<p></p>";
+      };
+
+
+
+
 
 }]); // calendar control end
 

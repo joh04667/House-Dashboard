@@ -94,33 +94,25 @@ html, body{
   border-bottom: 2px solid #661406;
 }
 
-.messages {
-  height: 825px;
-
-}
-
-.messageBox {
-  border: 1px solid #f2f2f2;
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #f0f0f0;
-  box-shadow: -3px 7px 9px rgba(0,0,0,.25);
-}
-
 .messageContainer {
   padding-left: 25px;
   padding-right: 25px;
   overflow-y: scroll;
-  height: 525px;
-  -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-  padding-bottom: 20%;
-  padding-top: 2.5%;
+  height: 450px;
+  box-shadow: 15px 2px -2px inset rgba(0,0,0,.5);
+}
+
+hr {
+  border-bottom: 1px solid black;
 }
 
 .messagesTitle {
-height: 5px;
+height: 20px;
 }
 
+.messages {
+  height: 700px;
+}
 
 .messageForm {
   height: 260px;
@@ -135,14 +127,9 @@ height: 5px;
   display: block;
 }
 
-.newmessageTitle {
-  width: 80%;
-}
-
 .messageTitle {
-  width: 100%;
+  width: 80%;
   margin-right: 0;
-  padding-right: 15px;
 }
 
 .messageForm .textbox {
@@ -194,7 +181,7 @@ height: 5px;
 }
 
 .messageTitle .remove span:hover {
-  color: #661406;
+  color: darkgray;
   cursor: pointer;
 }
 
@@ -219,21 +206,12 @@ footer {
 }
 
 .middle {
-  height: 900px;
+  height: 825px;
   margin-bottom: -35px;
   /*just build stuff*/
   /*background-color: #f4f4f4;
   border-left: 1px solid black;*/
   padding: 0;
-}
-
-.ng-enter {
-  animation: slideInRight .5s;
-  animation-delay: .5s;
-}
-
-.ng-leave {
-  animation: slideOutLeft .5s;
 }
 
 .floatbox {
@@ -314,22 +292,4 @@ table, .table td {
 
 .calendar iframe {
   border-radius: 15px;
-}
-
-
-
-/*animations*/
-
-@keyframes slideInRight {
-    from    { transform:translateX(100%);
-              opacity: 0; }
-    to      { transform: translateX(0);
-              opacity: 1;}
-}
-
-@keyframes slideOutLeft {
-  from    { transform:translateY(0);
-            opacity: 1; }
-  to      { transform:translateY(100%);
-            opacity: 0; }
 }
