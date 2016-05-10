@@ -1,0 +1,36 @@
+<div class="messagesTitle">
+<!-- <h1>Messages</h1> -->
+</div>
+ <div class="messages">
+  <div class="messageContainer">
+    <div class="message" ng-repeat="post in posts">
+      <div class="messageTitle">
+        <p><strong>{{post.display_name}}</strong> on {{post.date | date:'mediumDate'}}:</p>
+        <div ng-if="user.info.permissions == 'admin'" class="remove" ng-click="remove(post)">
+         <span class="remove glyphicon glyphicon-remove"></span>
+        </div>
+        <span>{{post.title}}</span>
+      </div>
+      <div class="messageContent">
+      <p>{{post.message}}</p>
+      </div>
+      <hr>
+
+    </div>
+
+  </div>
+
+
+  <form class="messageForm">
+    <h2>Leave us a message!</h2>
+    <div>
+      <label>Title</label>
+      <input type="text" ng-model="title" class="messageTitle" required>
+    </div>
+    <div>
+      <label>Message</label>
+      <textarea rows="8" cols="40" ng-model="newMessage" class="textbox" required></textarea>
+      <input type="submit" ng-click="submit()" class="submit btn btn-submit">
+    </div>
+  </form>
+ </div>
