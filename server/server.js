@@ -23,6 +23,8 @@ var main = require('./routes/main');
 var register = require('./routes/register');
 var success = require('./routes/success');
 var fail = require('./routes/fail');
+var auth = require('./routes/auth');
+var message = require('./routes/message');
 
 //////////// config /////////////
 app.use(express.static('server/public'));
@@ -51,9 +53,16 @@ app.use('/main', main);
 app.use('/register', register);
 app.use('/success', success);
 app.use('/fail', fail);
+app.use('/auth', auth);
+app.use('/message', message);
+
 
 app.get('/*', function(req, res){
-  res.sendFile(__dirname + '/public/views/main.html');
+    if(req.isAuthenticated()) {
+    res.sendFile(__dirname + '/public/views/main.html');
+  } else {
+    res.sendFile(__dirname + '/public/views/index.html');
+  }
 });
 
 

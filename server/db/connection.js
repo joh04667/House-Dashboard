@@ -38,7 +38,9 @@ function initializeDB(){
       var query = client.query(
         'CREATE TABLE IF NOT EXISTS post(' +
         'id SERIAL PRIMARY KEY,' +
+        'title TEXT NOT NULL,' +
         'message TEXT NOT NULL,' +
+        'date DATE NOT NULL,' +
         'user_id INT REFERENCES users(id));'
       );
       query.on('end', function(){
