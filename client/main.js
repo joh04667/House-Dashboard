@@ -34,6 +34,7 @@ app.factory('UserService', ['$http', function($http) {
       });
     };
 
+
       return {
         user: user,
         getUserData: getUserData
@@ -61,13 +62,13 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     clearClass();
     $scope.selected.calendar = "selected";
     $location.path('/calendar');
-  }
+  };
 
   $scope.chores = function() {
     clearClass();
     $scope.selected.chores = "selected";
     $location.path('/chores');
-  }
+  };
 
 
 }]); // Header Control End
@@ -85,7 +86,7 @@ app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', functio
             while($scope.house.length <= 8) {
               $scope.house.push("");
             }
-          }
+          };
 
           $scope.getRouterData();
 
@@ -99,10 +100,9 @@ app.controller('MessageController', ['UserService', '$scope', '$http', '$route',
 
     $scope.getPosts = function() {
       $http.get('/message').then(function(response) {
-        $scope.posts = response.data;
-        console.log('posts', response);
+        $scope.posts = response.data.reverse();
       });
-    }
+    };
 
     $scope.submit = function() {
       if($scope.title && $scope.newMessage) {
@@ -113,13 +113,13 @@ app.controller('MessageController', ['UserService', '$scope', '$http', '$route',
         $scope.getPosts();
       });
      }
-    }
+   };
 
     $scope.remove = function(obj) {
       $http.delete('/message/' + obj.id).then(function(response) {
         $scope.getPosts();
       });
-    }
+    };
 
     $scope.getPosts();
 
