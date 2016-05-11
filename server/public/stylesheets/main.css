@@ -40,6 +40,29 @@ html, body{
   color: white;
 }
 
+.admin {
+  position: fixed;
+  right: 10%;
+}
+
+/*modal*/
+.modal {
+  width: 100%;  
+}
+
+.modal-header {
+  background-color: #4CAF50;
+}
+
+.modal-title {
+  color: white;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .75);
+}
+
+.modal-body {
+
+}
+
 .subnav {
   height: 52px;
   width: 100%;

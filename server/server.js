@@ -25,6 +25,7 @@ var success = require('./routes/success');
 var fail = require('./routes/fail');
 var auth = require('./routes/auth');
 var message = require('./routes/message');
+var mac = require('./routes/mac');
 
 //////////// config /////////////
 app.use(express.static('server/public'));
@@ -55,6 +56,7 @@ app.use('/success', success);
 app.use('/fail', fail);
 app.use('/auth', auth);
 app.use('/message', message);
+app.use('/mac', mac);
 
 
 app.get('/*', function(req, res){

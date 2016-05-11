@@ -14,7 +14,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     .when('/chores', {
       templateUrl: 'views/chores.html',
       controller: 'ChoresController'
-    });
+    })
+    // .when('/admin', {
+    //   templateUrl: 'views/admin.html',
+    //
+    // })
+
   $locationProvider.html5Mode(true);
 
 }]);
@@ -33,7 +38,6 @@ app.factory('UserService', ['$http', function($http) {
         console.log('user is', user.info);
       });
     };
-
 
       return {
         user: user,
@@ -70,8 +74,28 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     $location.path('/chores');
   };
 
+  $scope.admin = function() {
+    clearClass();
+    $scope.selected.admin = "selected";
+    $location.path('/admin');
+  };
 
 }]); // Header Control End
+
+app.controller('ModalController', ['UserService', '$scope', '$http', '$location', function(UserService, $scope, $http, $location) {
+
+  $scope.user = UserService.user;
+
+  $scope.submit = function() {
+    $http.post('/mac', {name: $scope.name, mac: $scope.macAddress}).then(function(response) {
+      console.log(response);
+      $scope.name = "";
+      $scope.macAddress = "";
+    });
+  };
+
+
+}]);  // modal control end
 
 
 app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', function(UserService, $scope, $http) {
@@ -127,25 +151,25 @@ app.controller('MessageController', ['UserService', '$scope', '$http', '$route',
 
 app.controller('CalendarController', ['UserService', '$scope', '$http', '$route', function(UserService, $scope, $http, $route) {
 
-      $scope.selectedDate = null;
-      $scope.firstDayOfWeek = 0;
-      $scope.setDirection = function(direction) {
-        $scope.direction = direction;
-      };
-      $scope.dayClick = function(date) {
-        $scope.msg = "You clicked " + $filter("date")(date, "MMM d, y h:mm:ss a Z");
-      };
-      $scope.prevMonth = function(data) {
-        $scope.msg = "You clicked (prev) month " + data.month + ", " + data.year;
-      };
-      $scope.nextMonth = function(data) {
-        $scope.msg = "You clicked (next) month " + data.month + ", " + data.year;
-      };
-      $scope.setDayContent = function(date) {
-        // You would inject any HTML you wanted for
-        // that particular date here.
-          return "<p></p>";
-      };
+      // $scope.selectedDate = null;
+      // $scope.firstDayOfWeek = 0;
+      // $scope.setDirection = function(direction) {
+      //   $scope.direction = direction;
+      // };
+      // $scope.dayClick = function(date) {
+      //   $scope.msg = "You clicked " + $filter("date")(date, "MMM d, y h:mm:ss a Z");
+      // };
+      // $scope.prevMonth = function(data) {
+      //   $scope.msg = "You clicked (prev) month " + data.month + ", " + data.year;
+      // };
+      // $scope.nextMonth = function(data) {
+      //   $scope.msg = "You clicked (next) month " + data.month + ", " + data.year;
+      // };
+      // $scope.setDayContent = function(date) {
+      //   // You would inject any HTML you wanted for
+      //   // that particular date here.
+      //     return "<p></p>";
+      // };
 
 
 

@@ -48,6 +48,17 @@ function initializeDB(){
         done();
     });
 
+    var query = client.query(
+      'CREATE TABLE IF NOT EXISTS mac(' +
+      'id SERIAL PRIMARY KEY,' +
+      'name TEXT NOT NULL,' +
+      'mac TEXT NOT NULL);'
+    );
+    query.on('end', function(){
+      console.log('mac table created');
+      done();
+  });
+
       var query = client.query(
         'CREATE TABLE IF NOT EXISTS chores(' +
         'id SERIAL PRIMARY KEY,' +
