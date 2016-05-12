@@ -1,4 +1,4 @@
-var app = angular.module("MainApp", ['ngRoute', "ngMaterial", "ngAnimate"]);
+var app = angular.module("MainApp", ['ngRoute', "ngMaterial", "ngAnimate", "ngAria"]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -75,6 +75,7 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     clearClass();
     $scope.selected.chores = "selected";
     $location.path('/chores');
+    $('body').addClass('yellow');
   };
 
   $scope.admin = function() {
@@ -205,5 +206,22 @@ app.controller('CalendarController', ['UserService', '$scope', '$http', '$route'
 }]); // calendar control end
 
 app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', function(UserService, $scope, $http, $route) {
+
+  $scope.choreList = [];
+  $scope.chore = {};
+  $scope.user = UserService.user;
+
+  $scope.getChores = function() {
+    $http.get('/chores').then(function(response) {
+      $scope.choreList = response.data;
+    });
+  };
+
+  $scope.postChore = function() {
+    $http.post('/chores', chore).then(function(response) {
+      $scope.chore = {};
+      $scope.getChores();
+    })
+  };
 
 }]); // chores control end

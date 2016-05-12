@@ -33,7 +33,6 @@ connection.connect(params);
 
 
 connection.once('ready', function(prompt) {
-  console.log('yesss!');
   connection.exec('arp show', function(err, response) {
     connection.end().then(function() {
     var result = response.match(/\w\w:\w\w:\w\w:\w\w:\w\w:\w\w/gi);
