@@ -53,6 +53,7 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
 
   function clearClass() {
     $scope.selected = {};
+    $('body').removeClass();
   }
 
 
@@ -60,12 +61,14 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     clearClass();
     $scope.selected.messages = "selected";
     $location.path('/main');
+    $('body').addClass('red');
   }
 
   $scope.calendar = function() {
     clearClass();
     $scope.selected.calendar = "selected";
     $location.path('/calendar');
+    $('body').addClass('blue');
   };
 
   $scope.chores = function() {
@@ -85,15 +88,37 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
 app.controller('ModalController', ['UserService', '$scope', '$http', '$location', function(UserService, $scope, $http, $location) {
 
   $scope.user = UserService.user;
+  $scope.macs = [];
 
   $scope.submit = function() {
-    $http.post('/mac', {name: $scope.name, mac: $scope.macAddress}).then(function(response) {
-      console.log(response);
-      $scope.name = "";
-      $scope.macAddress = "";
+    if($scope.name && $scope.macAddress) {
+      if(!$scope.macAddress.match(/^\w\w:\w\w:\w\w:\w\w:\w\w:\w\w$/i)) {alert('Not a valid mac address ya doofus')} else {
+      $http.post('/mac', {name: $scope.name, mac: $scope.macAddress}).then(function(response) {
+        $scope.name = "";
+        $scope.macAddress = "";
+        $scope.getMacs();
+    });
+    }
+   }
+  };
+
+  $scope.getMacs = function() {
+    $http.get('/mac').then(function(response) {
+      $scope.macs = response.data;
     });
   };
 
+  $scope.remove = function(obj) {
+    console.log(obj);
+    $http.delete('/mac/' + obj.id).then(function(response){
+      $scope.getMacs();
+
+    });
+  };
+
+
+
+  $scope.getMacs();
 
 }]);  // modal control end
 
@@ -101,15 +126,17 @@ app.controller('ModalController', ['UserService', '$scope', '$http', '$location'
 app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', function(UserService, $scope, $http) {
 
           $scope.user = UserService.user;
-          console.log('this is', $scope.user, UserService.user);
-
           $scope.house = [];
 
           $scope.getRouterData = function() {
             // get mac addresses here
-            while($scope.house.length <= 8) {
-              $scope.house.push("");
-            }
+              $http.get('/mac/all').then(function(response) {
+                $scope.house = response.data;
+
+                while($scope.house.length <= 8) {
+                  $scope.house.push("");
+             }
+            });
           };
 
           $scope.getRouterData();

@@ -2,6 +2,15 @@ html, body{
   height: 100%;
   margin: 0;
   background-color: #dbdbdb;
+  transition: backgorund-color 1s linear;
+}
+
+.red {
+  background: -webkit-linear-gradient(top, rgba(175,104,93,1) 0%,rgba(219,219,219,1) 50%,rgba(219,219,219,1) 100%);
+}
+
+.blue {
+  background: -webkit-linear-gradient(top, rgba(74,193,192,1) 0%,rgba(219,219,219,1) 50%,rgba(219,219,219,1) 100%);
 }
 
 *:focus {
@@ -47,11 +56,23 @@ html, body{
 
 /*modal*/
 .modal {
-  width: 100%;  
+ margin:auto;
+}
+
+.modal-content {
+  margin-right: 0;
+  width: 100%;
+}
+
+
+.modal-dialog {
+  margin-left:10%;
+  width:80%;
 }
 
 .modal-header {
   background-color: #4CAF50;
+  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.5);
 }
 
 .modal-title {
@@ -59,9 +80,35 @@ html, body{
   text-shadow: 0 1px 4px rgba(0, 0, 0, .75);
 }
 
-.modal-body {
-
+.modalTable th, .modalTable td {
+  border-right: 1px solid grey;
 }
+
+.mac-table {
+  border: 1px inset lightgray;
+  overflow-y: scroll;
+}
+
+.mac-table th {
+  background: -webkit-linear-gradient(top,#fff 0,#e0e0e0 50%,#fff 100%);
+  border-bottom: 1px solid black;
+  color: black;
+  text-shadow: 0 -1px 4px rgba(0, 0, 0, 0.5);;
+  padding-left: 25px;
+}
+
+.mac-table td {
+  padding: 5px 15px 5px 15px;
+}
+
+.mac-table tr:nth-child(even) {
+  background-color: #dedede;
+}
+
+.mac-table tr:nth-child(odd) {
+  background-color: white;
+}
+
 
 .subnav {
   height: 52px;
@@ -70,7 +117,6 @@ html, body{
   box-shadow: 0 5px 2px -2px rgba(0,0,0,.5);
   border-bottom: 1px solid darkgrey;
   background: grey url('http://www.youdiamonds.com/wp-content/uploads/2015/04/youdiamonds-newbg3.jpg') fixed repeat;
-
 }
 
 .subheading {
@@ -102,15 +148,12 @@ html, body{
 .calendarHead:hover {
   text-shadow: 0 0 15px #4AC1C0;
   border-bottom: 2px solid #4AC1C0;
-
 }
 
 .subheading .calendarHead .selected {
   text-shadow: 0 0 15px #4AC1C0;
   border-bottom: 2px solid #4AC1C0;
-
 }
-
 
 .messageHead .selected {
   text-shadow: 0 0 20px #661406;
@@ -119,7 +162,6 @@ html, body{
 
 .messages {
   height: 825px;
-
 }
 
 .messageBox {
@@ -143,7 +185,6 @@ html, body{
 .messagesTitle {
 height: 5px;
 }
-
 
 .messageForm {
   height: 260px;
@@ -250,12 +291,12 @@ footer {
   padding: 0;
 }
 
-.ng-enter {
+.middle .ng-enter {
   animation: slideInRight .5s;
   animation-delay: .5s;
 }
 
-.ng-leave {
+.middle .ng-leave {
   animation: slideOutLeft .5s;
 }
 
@@ -305,10 +346,15 @@ footer {
   height: 25px;
   }
 
-
 table, .table td {
   width: 100%;
 }
+
+.table td {
+  text-align: center;
+  font-weight: bold;
+}
+
 .table tr:nth-child(odd) {
   background-color: #dedede;
 }
@@ -351,8 +397,8 @@ table, .table td {
 }
 
 @keyframes slideOutLeft {
-  from    { transform:translateY(0);
+  from    { transform:translateX(0);
             opacity: 1; }
-  to      { transform:translateY(100%);
+  to      { transform:translateX(-2%);
             opacity: 0; }
 }

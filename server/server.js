@@ -81,20 +81,16 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
             var query = client.query("SELECT * FROM users WHERE username = $1", [username]);
 
             query.on('row', function(row) {
-              console.log('User obj', row, 'Password', password);
               user = row;
 
             });
 
             // close connection after data get
             query.on('end', function() {
-              console.log(user, 'user');
               if(!user.username) {
-                console.log('first if');
                 done(null, false, {message: req.flash('Incorrect username')});
 
               } else if(encryptLib.comparePassword(password, user.password)) {
-                console.log('match!');
                 done(null, user);
               } else {
                 done(null, false, {message: req.flash('Incorrect username and password.')});
@@ -123,7 +119,6 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
        var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
 
        query.on('row', function(row) {
-         console.log('User row', row);
          user = row;
          done(null, user);
        });
