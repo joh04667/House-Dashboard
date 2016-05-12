@@ -312,6 +312,19 @@ height: 5px;
   margin-right: 20px;
 }
 
+
+
+
+/*chore modal*/
+.chores .modal-header {
+  background-color: #ed9512;
+}
+
+
+
+
+
+
 footer {
   bottom: 0;
   right: 0;

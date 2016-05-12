@@ -212,16 +212,19 @@ app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', 
   $scope.user = UserService.user;
 
   $scope.getChores = function() {
-    $http.get('/chores').then(function(response) {
+    $http.get('/chore').then(function(response) {
+      console.log(response, "CHORE");
       $scope.choreList = response.data;
     });
   };
 
   $scope.postChore = function() {
-    $http.post('/chores', chore).then(function(response) {
+    $http.post('/chore', chore).then(function(response) {
       $scope.chore = {};
       $scope.getChores();
     })
   };
+
+  $scope.getChores();
 
 }]); // chores control end

@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 
           var result = [];
 
-          var query = client.query("SELECT id, task, date_added, date_completed, users.display_name FROM chores JOIN users ON user_id = users.id ;");
+          var query = client.query("SELECT chores.id, task, date_added, date_completed, users.display_name FROM chores JOIN users ON user_id = users.id ;");
 
           query.on('row', function(data) {
             result.push(data);
@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 
           query.on('end', function() {
             res.send(result);
-            cliend.end();
+            client.end();
           });
     });
   }
@@ -46,4 +46,4 @@ router.post('/', function(req, res) {
 
 
 
-router.exports = router;
+module.exports = router;
