@@ -5,6 +5,7 @@ var child_process = require('child_process');
 
 // var child = child_process.execSync('ssh blondegalow.hopto.org', function (error, stdout) {
 //   console.log(stdout);
+//   stdout.on('data', func)
 // });
 
 
@@ -16,14 +17,14 @@ var child_process = require('child_process');
 
 var getMacs = function(callback) {
 var params = {
-  host: 'blondegalow.hopto.org',
+  host: // redacted,
   port: 23,
   shellPrompt: '>',
   timeout: 12500,
   loginPrompt: 'Login:',
   passwordPrompt: 'Password:',
-  username: 'admin',
-  password: 'blondegalow',
+  username: //redacted,
+  password: // redacted,
   debug: true
   // removeEcho: 4
 };

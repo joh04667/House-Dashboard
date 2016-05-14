@@ -15,10 +15,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       templateUrl: 'views/chores.html',
       controller: 'ChoresController'
     })
-    // .when('/admin', {
-    //   templateUrl: 'views/admin.html',
-    //
-    // })
+    .when('/groceries', {
+      templateUrl: 'views/groceries.html',
+      controller: 'GroceryController'
+    });
 
   $locationProvider.html5Mode(true);
 
@@ -62,7 +62,7 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     $scope.selected.messages = "selected";
     $location.path('/main');
     $('body').addClass('red');
-  }
+  };
 
   $scope.calendar = function() {
     clearClass();
@@ -76,6 +76,13 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     $scope.selected.chores = "selected";
     $location.path('/chores');
     $('body').addClass('yellow');
+  };
+
+  $scope.groceries = function() {
+    clearClass();
+    $scope.selected.groceries = "selected";
+    $location.path('/groceries');
+    $('body').addClass('purple');
   };
 
   $scope.admin = function() {
@@ -213,18 +220,44 @@ app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', 
 
   $scope.getChores = function() {
     $http.get('/chore').then(function(response) {
-      console.log(response, "CHORE");
-      $scope.choreList = response.data;
+      $scope.choreList = response.data.reverse();
     });
   };
 
   $scope.postChore = function() {
-    $http.post('/chore', chore).then(function(response) {
+    if($scope.chore.assigned_to && $scope.chore.task) {
+    $http.post('/chore', $scope.chore).then(function(response) {
       $scope.chore = {};
       $scope.getChores();
-    })
+    });
+  }
+};
+
+  $scope.complete = function(chore) {
+    if(!chore.completed_by) {
+    $http.put('/chore', {id: chore.id, completed_by: $scope.user.info.display_name}).then(function(response) {
+      $scope.getChores();
+    });
+   }
   };
+
+  $scope.checkComplete= function(chore) {
+      if(chore.completed_by) {
+        chore.completeText = "✓";
+        return "complete";
+      } else {
+        chore.completeText = "Done!";
+      return "incomplete";
+    }
+  }
 
   $scope.getChores();
 
 }]); // chores control end
+
+app.controller('GroceryController', ['UserService', '$scope', '$http', '$route', function(UserService, $scope, $http, $route) {
+
+  // $scope.user = UserService.user;
+
+
+}]); //grocery control ends

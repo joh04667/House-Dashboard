@@ -19,6 +19,10 @@ html, body{
   background: -webkit-linear-gradient(top, rgba(234,184,64,1) 0%,rgba(219,219,219,1) 50%,rgba(219,219,219,1) 100%);
 }
 
+.purple {
+  background: -webkit-linear-gradient(top, rgba(118,46,173,1) 0%,rgba(219,219,219,1) 50%,rgba(219,219,219,1) 100%);
+}
+
 *:focus {
   -webkit-focus-ring-color: auto 0px !important;
 }
@@ -36,6 +40,10 @@ html, body{
   text-align: right;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,.75);
 }
+
+/*.left {
+  align-items: center;
+}*/
 
 .headerText {
   float: right;
@@ -281,7 +289,7 @@ height: 5px;
 .chore-box {
   background-color: #F0F0F0;
   height: 100%;
-  padding: 0 0 20px 0;
+  padding: 0;
   box-shadow: -5px 10px 13px rgba(0,0,0,.5);
   border-radius: 15px;
 }
@@ -303,27 +311,115 @@ height: 5px;
 
 .chore-title h2 {
   margin: 0;
+  display: inline-block;
+}
+
+.chores .btn-info {
+  margin: 10px auto 0 auto;
+  display: block;
+  width: 20%;
+  min-width: 150px;
 }
 
 .chore-list {
-  height: 400px;
+  height: 375px;
   border: 1px solid black;
   margin-left: 20px;
   margin-right: 20px;
+  background-color: white;
+  border: 1px inset lightgray;
 }
 
+.chore-list th {
+  height: 40px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid grey;
+}
 
+.chore-list tr {
+  height: 35px;
+}
 
+.chore-list td {
+  border-right: 1px inset grey;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.chore-list tr td:first-child {
+  text-align: left !important;
+}
+
+.chore-list tr:nth-child(even) {
+ background-color: #ffe396;
+}
+
+.chore-list tr:nth-child(odd) {
+ background-color: #fffbf4;
+}
+
+.chore-list td:last-child {
+  text-align: center;
+}
+
+.chore-list button {
+  background-color: green;
+  border-radius: 5px;
+  border: none;
+  color: white;
+
+}
+
+.chore-list .complete {
+  color: #545454 !important;
+  background-color: lightgray !important;
+}
+
+.chore-list .complete button {
+  border: none;
+  background-color: #D3D3D3;
+  cursor: default;
+  color: #545454;
+}
 
 /*chore modal*/
 .chores .modal-header {
   background-color: #ed9512;
 }
 
+.chores .modal-content {
+  width: 30%;
+  min-width: 250px;
+  margin: auto;
+}
 
+.chores label {
+  display: block;
+  margin-bottom: 0;
+  margin-top: 15px;
+  margin-left: 20px;
+}
 
+.chores input {
+  display: block;
+  width: 80%;
+  margin: 15px auto 15px auto;
+}
 
+.chores select {
+  display: block;
+  width: 80%;
+  margin: 15px auto 15px auto;
+}
 
+.chores .btn-submit {
+  color: white;
+  margin-top: 20px;
+}
 
 footer {
   bottom: 0;
@@ -361,10 +457,11 @@ footer {
 
 .floatbox {
   min-height: 250px;
+  max-width: 400px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,.75);
-  margin: 15px 0 25px 0;
+  margin: 15px auto 25px auto;
 
   padding: 0 0 10px 0;
 }

@@ -52,9 +52,8 @@ router.delete('/:id', function(req, res){
 });
 
 router.get('/all', function(req, res) {
-  console.log('get got');
-  // if(!req.isAuthenticated()) {res.send('ERROR no auth');}
-  // else {
+  if(!req.isAuthenticated()) {res.send('ERROR no auth');}
+  else {
     getMacs(function(result) {
       var match = [];
       console.log('result is', result);
@@ -78,7 +77,7 @@ router.get('/all', function(req, res) {
       });
 
     });
-  // }
+  }
 });
 
 module.exports = router;

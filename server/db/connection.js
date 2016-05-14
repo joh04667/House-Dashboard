@@ -63,6 +63,8 @@ function initializeDB(){
         'CREATE TABLE IF NOT EXISTS chores(' +
         'id SERIAL PRIMARY KEY,' +
         'task varchar(255) NOT NULL,' +
+        'assigned_to varchar(15) NOT NULL,' +
+        'completed_by varchar(29),' +
         'date_added DATE NOT NULL,' +
         'date_completed DATE,' +
         'user_id INT REFERENCES users(id));'
