@@ -26,7 +26,8 @@ var fail = require('./routes/fail');
 var auth = require('./routes/auth');
 var message = require('./routes/message');
 var mac = require('./routes/mac');
-var chores = require('./routes/chores')
+var chores = require('./routes/chores');
+var grocery = require('./routes/grocery');
 
 //////////// config /////////////
 app.use(express.static('server/public'));
@@ -59,6 +60,7 @@ app.use('/auth', auth);
 app.use('/message', message);
 app.use('/mac', mac);
 app.use('/chore', chores);
+app.use('/grocery', grocery);
 
 
 app.get('/*', function(req, res){

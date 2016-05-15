@@ -17,14 +17,14 @@ var child_process = require('child_process');
 
 var getMacs = function(callback) {
 var params = {
-  host: // redacted,
+  host: 'blondegalow.hopto.org',
   port: 23,
   shellPrompt: '>',
   timeout: 12500,
   loginPrompt: 'Login:',
   passwordPrompt: 'Password:',
-  username: //redacted,
-  password: // redacted,
+  username: 'admin',
+  password: 'blondegalow',
   debug: true
   // removeEcho: 4
 };

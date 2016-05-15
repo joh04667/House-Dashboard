@@ -1,4 +1,4 @@
-var app = angular.module("MainApp", ['ngRoute', "ngMaterial", "ngAnimate", "ngAria"]);
+var app = angular.module("MainApp", ['ngRoute', /*"ngMaterial",*/ "ngAnimate"]);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -33,9 +33,9 @@ app.factory('UserService', ['$http', function($http) {
 
     var getUserData = function() {
         $http.get('/auth').then(function(response) {
-        console.log(response);
         user.info = response.data;
         console.log('user is', user.info);
+
       });
     };
 
@@ -100,7 +100,7 @@ app.controller('ModalController', ['UserService', '$scope', '$http', '$location'
 
   $scope.submit = function() {
     if($scope.name && $scope.macAddress) {
-      if(!$scope.macAddress.match(/^\w\w:\w\w:\w\w:\w\w:\w\w:\w\w$/i)) {alert('Not a valid mac address ya doofus')} else {
+      if(!$scope.macAddress.match(/^\w\w:\w\w:\w\w:\w\w:\w\w:\w\w$/i)) {alert('Not a valid mac address ya doofus');} else {
       $http.post('/mac', {name: $scope.name, mac: $scope.macAddress}).then(function(response) {
         $scope.name = "";
         $scope.macAddress = "";
@@ -249,7 +249,7 @@ app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', 
         chore.completeText = "Done!";
       return "incomplete";
     }
-  }
+  };
 
   $scope.getChores();
 
@@ -257,7 +257,67 @@ app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', 
 
 app.controller('GroceryController', ['UserService', '$scope', '$http', '$route', function(UserService, $scope, $http, $route) {
 
-  // $scope.user = UserService.user;
+  $scope.user = UserService.user;
+  $scope.groceryList = [];
+  $scope.groceryItem = "";
 
+  $scope.groceryGetter = function() {
+    $http.get('/grocery').then(function(response) {
+      $scope.groceryList = response.data.filter(function(s) {
+        if(s.date_completed) {
+        var day = new Date(s.date_completed);
+        var now = new Date();
+        return day.getDate() >= now.getDate() - 1;
+       }
+       return s;
+     }).reverse();
+     buttonize($scope.groceryList);
+    });
+  };
+
+  $scope.submit = function() {
+    if($scope.groceryItem) {
+      $http.post('/grocery', {item: $scope.groceryItem, name: $scope.user.info.display_name}).then(function(response) {
+        console.log('data', $scope.groceryList, response.data);
+        var result = response.data;
+        $scope.groceryList.unshift(response.data[0]);
+        buttonize($scope.groceryList);
+        $scope.groceryItem = "";
+      });
+    }
+  };
+
+  $scope.complete = function(obj) {
+    if(!obj.completed_by) {
+    $http.put('/grocery', {id: obj.id, name: $scope.user.info.display_name}).then(function(response) {
+      obj.completed_by = $scope.user.info.display_name;
+      obj.date_completed = new Date();
+      buttonize([obj]);
+    });
+   }
+  };
+
+
+
+  var buttonize = function(arr) {
+    arr.forEach(function(s) {
+      if(s.completed_by) {
+        s.completeText = "✓";
+      } else {
+        s.completeText = "I got it!";
+      }
+    });
+  };
+
+  $scope.checkComplete = function(item) {
+    if(item.completed_by) {
+      return "complete";
+    } else {
+      return "incomplete";
+    }
+  };
+
+
+$scope.groceryGetter();
 
 }]); //grocery control ends

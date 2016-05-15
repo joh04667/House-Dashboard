@@ -1,29 +1,50 @@
-hi
+<div class="groceries">
 
-<!-- <div class="groceries">
+
+  <div class="modal fade" id="groceryModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add New Grocery Item</h4>
+          </div>
+          <div class="modal-body">
+            <form class="chore-form">
+              <label>Add Item:</label>
+              <input type="text" ng-model="groceryItem" required>
+              <input type="submit" class="btn btn-submit" ng-click="submit()" data-dismiss="modal">
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
 
 
 <div class="grocery-box">
   <div class="grocery-title">
-      <h2>Groceries</h2>
+      <h2>Grocery List</h2>
   </div>
 
   <div class="grocery-list">
     <table>
-    <th>Task</th> <th>Date Added</th> <th>Added by</th> <th>Assigned To:</th> <th>Completed By:</th> <th>Date Completed:</th> <th>Done?</th>
+    <th>Item</th> <th>Date Added</th> <th>Added by</th> <th> </th> <th>✓</th>
     <tr ng-repeat="item in groceryList track by $index" ng-class="checkComplete(item)" >
-      <td>{{chore.task}}</td>
-      <td>{{chore.date_added | date:"mediumDate"}}</td>
-      <td>{{chore.display_name}}</td>
-      <td>{{chore.assigned_to}}</td>
-      <td>{{chore.completed_by}}</td>
-      <td>{{chore.date_completed | date:"mediumDate"}}</td>
-      <td><button ng-click="complete(chore)">{{chore.completeText}}</button></td>
+      <td>{{item.item}}</td>
+      <td>{{item.date_added | date:'mediumDate'}}</td>
+      <td>{{item.name}}</td>
+      <td ng-if="item.completed_by">{{item.completed_by}} got it</td>
+      <td ng-if="!item.completed_by"> </td>
+      <td><button ng-click="complete(item)">{{item.completeText}}</button></td>
     </tr>
   </table>
   </div>
-  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#choreModal">Add New Grocery Item</button>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#groceryModal">Add New Grocery Item</button>
 </div>
 
 
-</div> -->
+</div>

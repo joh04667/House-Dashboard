@@ -57,6 +57,20 @@ function initializeDB(){
     query.on('end', function(){
       console.log('mac table created');
       done();
+    });
+    
+      var query = client.query(
+        'CREATE TABLE IF NOT EXISTS groceries(' +
+        'id SERIAL PRIMARY KEY,' +
+        'item varchar(100) NOT NULL,' +
+        'date_added DATE NOT NULL,' +
+        'name TEXT NOT NULL,' +
+        'completed_by varchar(255),' +
+        'date_completed DATE);'
+      );
+      query.on('end', function(){
+        console.log('grocery table created');
+        done();
   });
 
       var query = client.query(

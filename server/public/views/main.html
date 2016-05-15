@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/angular-material.min.css">
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/placeholder.css">
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/angular/angular.min.js"></script>
-    <script src="vendor/angular/angular-aria.min.js"></script>
     <script src="vendor/angular/angular-animate.min.js"></script>
-    <script src="vendor/angular/angular-material.min.js"></script>
+    <!-- <script src="vendor/angular/angular-material.min.js"></script> -->
     <script src="vendor/angular/angular-route.min.js"></script>
     <script src="vendor/bootstrap/modal.js"></script>
 
@@ -51,7 +51,7 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Administrator Functions</h4>
             </div>
-            <div class="modal-body">
+            <div ng-if="user.info.permissions == 'admin'" class="modal-body">
               <div class="mac">
                 <h5>Add new MAC address:</h5>
                  <form>
