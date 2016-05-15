@@ -5,16 +5,20 @@
 }
 
 .groceries th {
-  height: 40px;
+  height: 25px;
   text-align: center;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom: 1px solid black;
-  border-right: 1px solid grey;
+  background-color: #f8efff;
+}
+
+.groceries .lastHeading {
+  border-right: 1px solid black;
 }
 
 .groceries tr {
-  height: 35px;
+  height: 25px;
 }
 
 .groceries td {
@@ -28,11 +32,11 @@
 }
 
 .groceries tr:nth-child(even) {
- background-color: #ffe396;
+ background-color: #d5a1fc;
 }
 
 .groceries tr:nth-child(odd) {
- background-color: #fffbf4;
+ background-color: #f0ddff;
 }
 
 .groceries td:last-child {
@@ -44,6 +48,18 @@
   border-radius: 5px;
   border: none;
   color: white;
+}
+.grocery-list .complete {
+  color: #545454 !important;
+  background-color: lightgray !important;
+  font-style: italic;
+}
+
+.grocery-list .complete button {
+  border: none;
+  background-color: #D3D3D3;
+  cursor: default;
+  color: #545454;
 }
 
 .grocery-title {
@@ -80,6 +96,7 @@
   margin-right: 20px;
   background-color: white;
   border: 1px inset lightgray;
+  overflow-y: scroll;
 }
 
 .grocery-box .btn-info {
@@ -88,4 +105,40 @@
   width: 25%;
   min-width: 225px;
   background-color: #31B0D5;
+}
+
+/*grocery modal*/
+.groceries .modal-header {
+  background-color: #8506e5;
+}
+
+.groceries .modal-content {
+  width: 30%;
+  min-width: 250px;
+  margin: auto;
+}
+
+.groceries label {
+  display: block;
+  margin-bottom: 0;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+.groceries input {
+  display: block;
+  width: 80%;
+  margin: 15px auto 15px auto;
+}
+
+.groceries select {
+  display: block;
+  width: 80%;
+  margin: 15px auto 15px auto;
+}
+
+.groceries .btn-submit {
+  color: white;
+  margin-top: 20px;
+  background-color: #ac52f2;
 }

@@ -328,6 +328,7 @@ height: 5px;
   margin-right: 20px;
   background-color: white;
   border: 1px inset lightgray;
+  overflow-y: scroll;
 }
 
 .chore-list th {
@@ -373,9 +374,14 @@ height: 5px;
   color: white;
 }
 
+.chore-spacer {
+  border-right: none;
+}
+
 .chore-list .complete {
   color: #545454 !important;
   background-color: lightgray !important;
+  font-style: italic;
 }
 
 .chore-list .complete button {
@@ -446,8 +452,9 @@ footer {
 }
 
 .middle .ng-enter {
+  opacity: 0;
   animation: slideInRight .5s;
-  animation-delay: .5s;
+  animation-delay: .7s;
 }
 
 .middle .ng-leave {
@@ -545,10 +552,10 @@ table, .table td {
 /*animations*/
 
 @keyframes slideInRight {
-    from    { transform:translateX(100%);
+    from    { transform:translateX(40%);
               opacity: 0; }
     to      { transform: translateX(0);
-              opacity: 1;}
+              opacity: 1; }
 }
 
 @keyframes slideOutLeft {

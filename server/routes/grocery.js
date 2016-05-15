@@ -8,7 +8,9 @@ router.get('/', function(req, res) {
 
           var result = [];
 
-          var query = client.query("SELECT * FROM groceries;");
+          var deletion = client.query("DELETE FROM groceries WHERE date_completed <= (now() - '2 days'::INTERVAL);");
+
+          var query = client.query("SELECT * FROM groceries");
 
           query.on('row', function(data) {
             result.push(data);
@@ -28,7 +30,8 @@ router.post('/', function(req, res) {
       var now = new Date();
       var result = [];
 
-      var query = client.query('INSERT INTO groceries (item, date_added, name) VALUES ($1, $2, $3)' + 'RETURNING id, item, date_added, name;', [req.body.item, now, req.body.name]);
+
+      var query = client.query('INSERT INTO groceries (item, date_added, name) VALUES ($1, current_date, $2) ' + 'RETURNING id, item, date_added, name;', [req.body.item, req.body.name]);
 
       query.on('row', function(row) {
         result.push(row);

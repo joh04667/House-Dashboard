@@ -48,6 +48,14 @@
         <td>{{chore.date_completed | date:"mediumDate"}}</td>
         <td><button ng-click="complete(chore)">{{chore.completeText}}</button></td>
       </tr>
+      <tr ng-repeat="space in spacer track by $index" class="chore-spacer">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </table>
     </div>
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#choreModal">Add New Chore</button>

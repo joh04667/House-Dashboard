@@ -32,7 +32,7 @@
 
   <div class="grocery-list">
     <table>
-    <th>Item</th> <th>Date Added</th> <th>Added by</th> <th> </th> <th>✓</th>
+    <th>Item</th> <th>Date Added</th> <th>Added by</th> <th> </th> <th class="lastHeading">✓</th>
     <tr ng-repeat="item in groceryList track by $index" ng-class="checkComplete(item)" >
       <td>{{item.item}}</td>
       <td>{{item.date_added | date:'mediumDate'}}</td>
@@ -41,6 +41,13 @@
       <td ng-if="!item.completed_by"> </td>
       <td><button ng-click="complete(item)">{{item.completeText}}</button></td>
     </tr>
+    <tr ng-repeat="space in spacer track by $index">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    <tr>
   </table>
   </div>
   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#groceryModal">Add New Grocery Item</button>

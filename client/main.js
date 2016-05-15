@@ -217,10 +217,16 @@ app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', 
   $scope.choreList = [];
   $scope.chore = {};
   $scope.user = UserService.user;
+  $scope.spacer = [];
 
   $scope.getChores = function() {
     $http.get('/chore').then(function(response) {
-      $scope.choreList = response.data.reverse();
+      $scope.choreList = response.data.reverse().sort(function(a,b) {
+       a = Boolean(a.completed_by);
+       b = Boolean(b.completed_by);
+       return a - b;
+     });
+     spacer();
     });
   };
 
@@ -251,6 +257,16 @@ app.controller('ChoresController', ['UserService', '$scope', '$http', '$route', 
     }
   };
 
+
+  var spacer = function() {
+    $scope.spacer = [];
+    var length = $scope.choreList.length;
+    while(length < 10) {
+      $scope.spacer.push('');
+      length += 1;
+    }
+  };
+
   $scope.getChores();
 
 }]); // chores control end
@@ -259,30 +275,31 @@ app.controller('GroceryController', ['UserService', '$scope', '$http', '$route',
 
   $scope.user = UserService.user;
   $scope.groceryList = [];
+  $scope.spacer = [];
   $scope.groceryItem = "";
 
   $scope.groceryGetter = function() {
     $http.get('/grocery').then(function(response) {
-      $scope.groceryList = response.data.filter(function(s) {
-        if(s.date_completed) {
-        var day = new Date(s.date_completed);
-        var now = new Date();
-        return day.getDate() >= now.getDate() - 1;
-       }
-       return s;
-     }).reverse();
+      $scope.spacer = [];
+      $scope.groceryList = response.data.reverse().sort(function(a,b) {
+       a = Boolean(a.completed_by);
+       b = Boolean(b.completed_by);
+       return a - b;
+     });
      buttonize($scope.groceryList);
+     spacer();
     });
   };
 
   $scope.submit = function() {
     if($scope.groceryItem) {
       $http.post('/grocery', {item: $scope.groceryItem, name: $scope.user.info.display_name}).then(function(response) {
-        console.log('data', $scope.groceryList, response.data);
         var result = response.data;
+        $scope.spacer = [];
         $scope.groceryList.unshift(response.data[0]);
         buttonize($scope.groceryList);
         $scope.groceryItem = "";
+        spacer();
       });
     }
   };
@@ -293,11 +310,23 @@ app.controller('GroceryController', ['UserService', '$scope', '$http', '$route',
       obj.completed_by = $scope.user.info.display_name;
       obj.date_completed = new Date();
       buttonize([obj]);
+      $scope.groceryList.sort(function(a,b) {
+        a = Boolean(a.completed_by);
+        b = Boolean(b.completed_by);
+        return a - b;
+      });
     });
    }
   };
 
-
+  var spacer = function() {
+    $scope.spacer = [];
+    var length = $scope.groceryList.length;
+    while(length < 14) {
+      $scope.spacer.push('');
+      length += 1;
+    }
+  };
 
   var buttonize = function(arr) {
     arr.forEach(function(s) {
