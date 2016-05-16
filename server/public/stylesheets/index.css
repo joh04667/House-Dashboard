@@ -44,6 +44,7 @@ form {
   color: #333;
   border-radius: 10px;
   margin: auto;
+  min-width: 300px;
 }
 form header {
   background: #8fcece;
@@ -113,6 +114,7 @@ form .register {
   text-align: center;
   font-family: inherit;
   padding-top: 10px;
+  min-width: 325px;
 }
 
 form .new {
