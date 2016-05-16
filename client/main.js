@@ -165,7 +165,6 @@ app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', functio
                 }
                   while($scope.house.length <= 8) {
                     $scope.house.push("");
-
                }
                console.log('house', $scope.house);
 
