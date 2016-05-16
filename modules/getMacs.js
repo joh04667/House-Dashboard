@@ -1,7 +1,7 @@
 var telnet = require('telnet-client');
 var connection = new telnet();
 var child_process = require('child_process');
-
+var StringDecoder = require('string_decoder');
 
 // var child = child_process.execSync('ssh blondegalow.hopto.org', function (error, stdout) {
 //   console.log(stdout);
@@ -9,13 +9,30 @@ var child_process = require('child_process');
 // });
 
 
+var getMacs = function(cb) {
+var isConnected;
+
+var check = child_process.spawnSync('telnet', ['blondesgalow.hopto.org'], {timeout: 1500});
+
+
+if(check.stdout.toString().match(/Connected to/gi)) {
+  console.log('woo')
+  isConnected = true;
+  checkMacs(function(res) {
+    cb(res);
+    check.SIG
+  });
+} else {
+console.log('boo?', check.error);
+    cb('err');
+ }
+}
 
 
 
 
 
-
-var getMacs = function(callback) {
+function checkMacs(callback) {
 var params = {
   host: 'blondegalow.hopto.org',
   port: 23,
@@ -29,23 +46,9 @@ var params = {
   // removeEcho: 4
 };
 var result = [];
-// var errir = {};
-// var tuna;
-// var obj = {first: 'val'};
-//
-// try {
-//   child_process.execSync('telnet blondegalow.hopto.org');
-// } catch(e) {
-//   errir.error = true;
-//   console.log('typeof', typeof(e));
-//   console.log('FUCK YOU', e[Object.keys(e)[2]]);
-//   tuna = e;
-// } finally {
-//   if(errir.error) {
-//   console.log('dildo', tuna);
-//   callback('err');
-//   return 'error';
-// } else {
+
+
+
 
 connection.connect(params); /*, function(error) {
   console.log('error', error);
@@ -70,7 +73,7 @@ connection.once('ready', function(prompt) {
    }
   });
  });
- 
+
 };
 
 

@@ -50,11 +50,10 @@ router.delete('/:id', function(req, res){
 router.get('/all', function(req, res) {
     getMacs(function(result) {
       if(result === 'err') {
-        res.send('err');
 
+        res.sendStatus(210);
         console.log('sent err');
       } else {
-      console.log('result is', result);
       var match = [];
 
        pg.connect(connectionString, function(err, client) {
