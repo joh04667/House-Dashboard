@@ -58,7 +58,7 @@ function initializeDB(){
       console.log('mac table created');
       done();
     });
-    
+
       var query = client.query(
         'CREATE TABLE IF NOT EXISTS groceries(' +
         'id SERIAL PRIMARY KEY,' +
@@ -91,8 +91,6 @@ function initializeDB(){
     }
   });
 }
-// var installSession = exec.execSync('psql ' + connectionString + ' < node_modules/connect-pg-simple/table.sql');
-// create session table
 
 
 module.exports.connectionString = connectionString;
