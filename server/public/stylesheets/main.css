@@ -280,7 +280,7 @@ height: 5px;
 
 .messageForm {
   height: 260px;
-  position: absolute;
+  position: static;
   bottom: 15px;
   width: 100%;
   margin: auto;
