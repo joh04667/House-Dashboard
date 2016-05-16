@@ -6,6 +6,7 @@ var session = require('express-session'); // session tracking module
 var initializeDB = require('./db/connection').initializeDB;
 var connectionString = require('./db/connection').connectionString;
 var pgSession = require('connect-pg-simple')(session);
+var dotenv = require('dotenv').config();
 
 
 /// OAuth ///

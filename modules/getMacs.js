@@ -1,32 +1,28 @@
 var telnet = require('telnet-client');
 var connection = new telnet();
 var child_process = require('child_process');
-var StringDecoder = require('string_decoder');
 
-// var child = child_process.execSync('ssh blondegalow.hopto.org', function (error, stdout) {
-//   console.log(stdout);
-//   stdout.on('data', func)
-// });
+
 
 
 var getMacs = function(cb) {
 var isConnected;
 
-var check = child_process.spawnSync('telnet', ['blondegalow.hopto.org'], {timeout: 1500});
+var check = child_process.spawnSync('telnet', [process.env.HOST_URL], {timeout: 1500});
 
 
 if(check.stdout.toString().match(/Connected to/gi)) {
-  console.log('woo')
+  console.log(typeof(process.env.R_PASSWORD), process.env.R_USERNAME, process.env.HOST_URL);
+  console.log('woo');
   isConnected = true;
   checkMacs(function(res) {
     cb(res);
-    check.SIG
   });
 } else {
 console.log('boo?', check.error);
     cb('err');
  }
-}
+};
 
 
 
@@ -34,14 +30,14 @@ console.log('boo?', check.error);
 
 function checkMacs(callback) {
 var params = {
-  host: 'blondegalow.hopto.org',
+  host: process.env.HOST_URL,
   port: 23,
   shellPrompt: '>',
   timeout: 12500,
   loginPrompt: 'Login:',
   passwordPrompt: 'Password:',
-  username: 'admin',
-  password: 'blondegalow',
+  username: process.env.R_USERNAME,
+  password: process.env.R_PASSWORD,
   debug: true
   // removeEcho: 4
 };

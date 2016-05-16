@@ -603,7 +603,7 @@ float: right;
 }
 
 .fitbit .table {
-  background-color: rgba(60, 60, 60, 0.6);
+  background-color: rgba(100,100,100,.5);
   text-align: center;
   vertical-align: middle;
 }
