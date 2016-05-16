@@ -49,7 +49,9 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
 
   UserService.getUserData();
   $scope.user = UserService.user;
-  $scope.selected = {messages: "selected"};
+  $scope.selected = {messages: "message-select"};
+  var duck = false;
+
 
   function clearClass() {
     $scope.selected = {};
@@ -90,6 +92,17 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
     $scope.selected.admin = "selected";
     $location.path('/admin');
   };
+
+  var redirect = function() {
+    if(!duck) {
+      $location.path('/main');
+      duck = true;
+    }
+  };
+
+  redirect();
+
+
 
 }]); // Header Control End
 
@@ -188,6 +201,9 @@ app.controller('MessageController', ['UserService', '$scope', '$http', '$route',
         $scope.getPosts();
       });
     };
+
+
+
 
     $scope.getPosts();
 

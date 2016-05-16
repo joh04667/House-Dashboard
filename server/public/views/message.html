@@ -1,6 +1,43 @@
 <div class="messagesTitle">
 <!-- <h1>Messages</h1> -->
 </div>
+
+
+<!-- modal -->
+<div class="modal fade message-modal" id="messageModal" role="dialog">
+  <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content modal-sm">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Message</h4>
+        </div>
+        <div class="modal-body">
+          <form class="messageForm">
+            <h2>Leave us a message!</h2>
+            <div>
+              <label>Title</label>
+              <input type="text" ng-model="title" class="newmessageTitle" required>
+            </div>
+            <div>
+              <label>Message</label>
+              <textarea rows="8" cols="40" ng-model="newMessage" class="textbox" required></textarea>
+              <input type="submit" ng-click="submit()" class="submit btn btn-submit">
+            </div>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+
+
+
+
  <div class="messages">
   <div class="messageContainer">
     <div class="messageBox" ng-repeat="post in posts">
@@ -19,8 +56,12 @@
 
   </div>
 
+<div class="message-modal-button">
 
-  <form class="messageForm">
+  <button type="button" class="btn" data-toggle="modal" data-target="#messageModal">Leave us a message!</button>
+</div>
+
+  <!-- <form class="messageForm">
     <h2>Leave us a message!</h2>
     <div>
       <label>Title</label>
@@ -31,5 +72,5 @@
       <textarea rows="8" cols="40" ng-model="newMessage" class="textbox" required></textarea>
       <input type="submit" ng-click="submit()" class="submit btn btn-submit">
     </div>
-  </form>
+  </form> -->
  </div>
