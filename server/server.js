@@ -5,7 +5,6 @@ var flash = require('connect-flash');
 var session = require('express-session'); // session tracking module
 var initializeDB = require('./db/connection').initializeDB;
 var connectionString = require('./db/connection').connectionString;
-var pgSession = require('connect-pg-simple')(session);
 var dotenv = require('dotenv').config();
 
 
@@ -38,10 +37,6 @@ initializeDB();
 
 
 app.use(session({
-  // store: new pgSession({
-  //   // pg: pg,
-  //   conString: connectionString,
-  // }),
   secret: process.env.SESSION_SECRET || 'keyboard cat',
   resave: true,
   saveUninitialized: false,
