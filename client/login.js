@@ -53,8 +53,10 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
           }).then(function(response) {
             console.log(response);
             if(response.status == 275) {$scope.error.name = true}
+            else {
             $scope.user = {};
-
+            window.location.assign('/');
+          }
             //TODO: upon confirmation of db entry, add a modal or something that confirms this and redirect
 
           });

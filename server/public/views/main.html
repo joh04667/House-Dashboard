@@ -24,7 +24,7 @@
 
   <header class="top" ng-controller="HeaderController">
     <div class="headerText">
-    <h3>Welcome, {{user.info.display_name}}</h3>
+    <h3>Hey, {{user.info.display_name}}!</h3>
     </div>
     <div class="logout hvr-rectangle-out admin" ng-if="user.info.permissions == 'admin'">
       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#adminModal">Admin</button>
@@ -56,11 +56,13 @@
                 <h5>Add new MAC address:</h5>
                  <form>
                   <label>Name:</label>
-                     <input type="name" ng-model="name" required>
-                     <input type="submit" ng-click="submit()">
+                    <input type="name" ng-model="name" required>
+                    <label>MAC address:</label>
+                     <input type="text" ng-model="macAddress" required>
 
-                 <label>MAC address:</label>
-                    <input type="text" ng-model="macAddress" required>
+                     <input type="submit" ng-class="btn btn-submit" id="mac-btn" ng-click="submit()">
+
+
 
                  </form>
                 <div class="modalTable">

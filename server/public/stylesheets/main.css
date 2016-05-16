@@ -144,6 +144,13 @@ html, body{
   background-color: white;
 }
 
+#mac-btn {
+  background-color: #4CAF50;
+  min-width: 130px;
+  color: white;
+  padding-left: 20px;
+}
+
 
 .subnav {
   height: 52px;
@@ -275,6 +282,14 @@ height: 5px;
   color: white;
   background-color: #9e220f;
 
+}
+
+.message-modal-button button:focus {
+  color: white;
+}
+
+.message-modal-button button:active {
+  color: white;
 }
 
 
