@@ -161,12 +161,15 @@ app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', functio
                   $scope.error.router = true;
                 } else {
                   $scope.house = response.data;
-                  $scope.house.push('Piper');
-
+                  $scope.house.push({name: 'Piper'});
+                }
                   while($scope.house.length <= 8) {
                     $scope.house.push("");
+
                }
-             }
+               console.log('house', $scope.house);
+
+
             });
           };
 
