@@ -15,6 +15,9 @@
       <header class="new">Please Register an Account</header>
       <label>Choose a username: </label>
       <input ng-model="user.username" required/>
+      <div class="error" ng-show="error.name">
+        <p>This username has already been taken</p>
+      </div>
       <div class="help">At least 6 characters</div>
       <label>Your First Name: </label>
       <input ng-model="user.display_name" required/>

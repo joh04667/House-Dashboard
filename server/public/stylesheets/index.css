@@ -28,6 +28,12 @@ body {
   margin-bottom: 10%;
 }
 
+.error {
+  color: red;
+  margin-left: 35px;
+  padding-top: 10px;
+}
+
 /*form*/
 form {
   background: white;

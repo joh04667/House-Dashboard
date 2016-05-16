@@ -33,11 +33,8 @@ router.post('/', function(req, res, next) {
     query.on('end', function() {
       console.log('checked for username, results', results.length);
       if(results.length !== 0) {
-        res.sendStatus(418);
-      }
-    });
-
-    if(results.length === 0) {
+        res.sendStatus(275);
+      } else if(results.length === 0) {
     var query = client.query('INSERT INTO users (username, password, display_name, active, permissions) VALUES ($1, $2, $3, true, $4)', [user.username, user.password, user.display_name, "user"]);
 
     query.on('error', function(err) {console.log(err);});
@@ -47,6 +44,7 @@ router.post('/', function(req, res, next) {
       client.end();
     });
    }
+   });
   });
 });
 

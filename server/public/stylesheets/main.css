@@ -203,7 +203,6 @@ html, body{
 
 
 
-
 .subnav .message-select {
   background: #661406;
 }
@@ -514,6 +513,10 @@ footer {
   height: 35px;
 }
 
+footer p {
+float: right;
+}
+
 .view {
   height: 100%;
   width: 100%;
@@ -591,8 +594,24 @@ footer {
 
 
 
-.fitbit {
+#fitbit-title {
   background-color: #4AC1C0;
+}
+
+.fitbit {
+  background-color: white;
+}
+
+.fitbit .table {
+  background-color: rgba(60, 60, 60, 0.6);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fitbit-button {
+  background-color: #4AC1C0;
+  margin:auto;
+  margin-top: 90px;
 }
 
 .table {
@@ -666,7 +685,7 @@ table, .table td {
 
 
 #table-error {
-  background-color: rgba(200, 100, 100, .5);
+  background-color: rgba(240, 100, 100, .5);
   color: white;
   position: absolute;
   z-index: 10;
@@ -679,7 +698,20 @@ table, .table td {
 
 #table-error p {
   font-size: 20px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  padding-top: 5px;
+  color: black;
+}
+
+#table-error p:last-child {
+  font-size: 14px;
+  padding-top: 30px;
+}
+
+#table-error span {
+  color: red;
+  font-size: 45px;
+  padding-top: 25px;
 }
 
 .calendar {

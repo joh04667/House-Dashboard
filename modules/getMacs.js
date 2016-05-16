@@ -12,7 +12,7 @@ var StringDecoder = require('string_decoder');
 var getMacs = function(cb) {
 var isConnected;
 
-var check = child_process.spawnSync('telnet', ['blondesgalow.hopto.org'], {timeout: 1500});
+var check = child_process.spawnSync('telnet', ['blondegalow.hopto.org'], {timeout: 1500});
 
 
 if(check.stdout.toString().match(/Connected to/gi)) {

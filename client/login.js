@@ -34,6 +34,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
 
       $scope.register = function() {
         /// looots of error handling
+        $scope.error = {};
         if($scope.user.password !== $scope.user.verifyPassword) {
           $scope.error.pwMatch = true;
           $scope.user.password = "";
@@ -51,7 +52,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
             data: $scope.user
           }).then(function(response) {
             console.log(response);
-            if(response.status == 418) {console.log('teapot');}
+            if(response.status == 275) {$scope.error.name = true}
             $scope.user = {};
 
             //TODO: upon confirmation of db entry, add a modal or something that confirms this and redirect
