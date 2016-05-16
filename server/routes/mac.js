@@ -55,8 +55,11 @@ router.get('/all', function(req, res) {
   if(!req.isAuthenticated()) {res.send('ERROR no auth');}
   else {
     getMacs(function(result) {
-      var match = [];
+      // if(result === 'err') {
+      //   res.sendStatus(210);
+      // }
       console.log('result is', result);
+      var match = [];
 
        pg.connect(connectionString, function(err, client) {
 

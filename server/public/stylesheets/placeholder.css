@@ -43,12 +43,16 @@
   text-align: center;
 }
 
-.groceries button {
+.groceries .grocery-got {
   background-color: green;
   border-radius: 5px;
   border: none;
   color: white;
+  height: 20px;
+  font-size: 11px;
+  margin-bottom: 2.5px;
 }
+
 .grocery-list .complete {
   color: #545454 !important;
   background-color: lightgray !important;

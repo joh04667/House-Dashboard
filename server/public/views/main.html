@@ -51,7 +51,7 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Administrator Functions</h4>
             </div>
-            <div ng-if="user.info.permissions == 'admin'" class="modal-body">
+            <div class="modal-body">
               <div class="mac">
                 <h5>Add new MAC address:</h5>
                  <form>
@@ -91,14 +91,27 @@
           <div class="floatbox whoIsHome" ng-controller="WhoIsHomeController">
             <div class="title whoIsHome">
               <h5>Who is home?</h5>
+              <button class="refresh-button" ng-click="getRouterData()">&#8635</button>
             </div>
-            <div class="table">
+
+            <div class="table" ng-class="error.load" > <!-- ng-show="!error.loading" -->
+              <div class="table" id="table-load" ng-show="error.loading">
+                <div class="spin-container">
+                 <span class="glyphicon glyphicon-repeat glyphicon-repeat-animate"></span>
+                </div>
+              </div>
+
+              <div class="table" id="table-error" ng-show="error.router">
+                <span>
+                <p>Data could not be retrieved.</p>
+                <p>Tell Kyle to fix it.</p>
+              </div>
+
              <table>
               <tr ng-repeat="person in house track by $index"><td>{{person.name}}</td></tr>
 
              </table>
             </div>
-
           </div>
 
           <div class="floatbox">

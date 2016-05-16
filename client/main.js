@@ -99,15 +99,16 @@ app.controller('ModalController', ['UserService', '$scope', '$http', '$location'
   $scope.macs = [];
 
   $scope.submit = function() {
-    if($scope.name && $scope.macAddress) {
+    if($scope.name !== "" && $scope.macAddress !== "") {
+      console.log($scope.name, $scope.macAddress);
       if(!$scope.macAddress.match(/^\w\w:\w\w:\w\w:\w\w:\w\w:\w\w$/i)) {alert('Not a valid mac address ya doofus');} else {
       $http.post('/mac', {name: $scope.name, mac: $scope.macAddress}).then(function(response) {
         $scope.name = "";
         $scope.macAddress = "";
         $scope.getMacs();
-    });
+     });
     }
-   }
+  } else {console.log('nope', $scope.name, $scope.macAddress);}
   };
 
   $scope.getMacs = function() {
@@ -134,15 +135,23 @@ app.controller('ModalController', ['UserService', '$scope', '$http', '$location'
 app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', function(UserService, $scope, $http) {
 
           $scope.user = UserService.user;
-          $scope.house = [];
+          $scope.house = ["","","","","","","",""];
+          $scope.error = {router: false};
 
           $scope.getRouterData = function() {
-            // get mac addresses here
+            $scope.error.loading = true;
+            $scope.error.router = false;
               $http.get('/mac/all').then(function(response) {
-                $scope.house = response.data;
+                $scope.error.loading = false;
 
-                while($scope.house.length <= 8) {
-                  $scope.house.push("");
+                if(response.status === 210) {
+                  $scope.error.router = true;
+                } else {
+                  $scope.house = response.data;
+
+                  while($scope.house.length <= 8) {
+                    $scope.house.push("");
+               }
              }
             });
           };

@@ -30,18 +30,38 @@ var params = {
 };
 var result = [];
 
-connection.connect(params);
+// try {
+//   child_process.execSync('telnet ' + params.host);
+// } catch(e) {
+//   var err = e;
+//   err.error = true;
+//   callback('err');
+// } finally {
+//   if(!err.error) {
+//   console.log('dildo', err.error);
+
+
+connection.connect(params), function(error) {
+  console.log('error', error);
+  callback(err);
+};
 
 
 connection.once('ready', function(prompt) {
   connection.exec('arp show', function(err, response) {
+    if(err) {console.log('erronio', err); callback(err)} else {
     connection.end().then(function() {
     var result = response.match(/\w\w:\w\w:\w\w:\w\w:\w\w:\w\w/gi);
     console.log('mac adds are:', result);
     callback(result);
    });
+   }
   });
  });
-};
+// };
+
+}}
+
+
 
 module.exports = getMacs;

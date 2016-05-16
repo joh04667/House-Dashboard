@@ -39,7 +39,7 @@
       <td>{{item.name}}</td>
       <td ng-if="item.completed_by">{{item.completed_by}} got it</td>
       <td ng-if="!item.completed_by"> </td>
-      <td><button ng-click="complete(item)">{{item.completeText}}</button></td>
+      <td><button class="grocery-got" ng-click="complete(item)">{{item.completeText}}</button></td>
     </tr>
     <tr ng-repeat="space in spacer track by $index">
       <td></td>
