@@ -1,0 +1,295 @@
+html, body{
+  height: 100%;
+  margin: 0;
+  background-color: #dbdbdb;
+}
+
+*:focus {
+  -webkit-focus-ring-color: auto 0px !important;
+}
+
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #232c35 url('../images/bg-texture.png') repeat fixed;
+  color: white;
+  display: flex;
+  z-index: 1000;
+  text-align: right;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.75);
+}
+
+.headerText {
+  float: right;
+  margin: auto 20px;
+  position:absolute;
+}
+
+.logout {
+  text-align: center;
+  padding: 14px 20px;
+  width: 10%;
+  right: 0;
+  top:0;
+  display: inline-block;
+  position: fixed;
+  border-left: 2px solid grey;
+  color: white;
+}
+
+.subnav {
+  height: 52px;
+  width: 100%;
+  background-color: black;
+  box-shadow: 0 5px 2px -2px rgba(0,0,0,.5);
+  border-bottom: 1px solid darkgrey;
+  background: grey url('http://www.youdiamonds.com/wp-content/uploads/2015/04/youdiamonds-newbg3.jpg') fixed repeat;
+
+}
+
+.subheading {
+  text-align: center;
+  color: white;
+  width: 20%;
+  float: left;
+  height: 52px;
+  vertical-align: middle;
+  padding-top: 20px;
+  border-right: 2px groove #dbdbdb;
+  text-shadow: 0 0 5px rgba(0,0,0,.75);
+  transition: color .5s ease-out, border-bottom .5s, text-shadow .5s;
+}
+
+.subheading h6 {
+  margin: auto;
+}
+
+.subheading:hover {
+  cursor:pointer;
+}
+
+.messageHead:hover {
+  text-shadow: 0 0 15px #661406;
+  border-bottom: 2px solid #661406;
+}
+
+.calendarHead:hover {
+  text-shadow: 0 0 15px #4AC1C0;
+  border-bottom: 2px solid #4AC1C0;
+
+}
+
+.subheading .calendarHead .selected {
+  text-shadow: 0 0 15px #4AC1C0;
+  border-bottom: 2px solid #4AC1C0;
+
+}
+
+
+.messageHead .selected {
+  text-shadow: 0 0 20px #661406;
+  border-bottom: 2px solid #661406;
+}
+
+.messageContainer {
+  padding-left: 25px;
+  padding-right: 25px;
+  overflow-y: scroll;
+  height: 450px;
+  box-shadow: 15px 2px -2px inset rgba(0,0,0,.5);
+}
+
+hr {
+  border-bottom: 1px solid black;
+}
+
+.messagesTitle {
+height: 20px;
+}
+
+.messages {
+  height: 700px;
+}
+
+.messageForm {
+  height: 260px;
+  position: absolute;;
+  bottom: 15px;
+  width: 100%;
+  margin: auto;
+  padding-left: 15%;
+}
+
+.messageForm label {
+  display: block;
+}
+
+.messageTitle {
+  width: 80%;
+  margin-right: 0;
+}
+
+.messageForm .textbox {
+  height: 75px;
+  max-height: 75px;
+  width: 80%;
+}
+
+.messageForm .submit {
+  display: block;
+  margin-top: 10px;
+  width: 25%;
+  background-color: #661406;
+  color: white;
+  text-shadow: 0 0 4px rgba(0,0,0, .75);
+}
+
+.messageForm .submit:hover {
+  background-color: #844237;
+}
+
+.messageTitle p {
+  font-size: 12px;
+  color: darkgrey;
+  display: inline;
+}
+
+.messageTitle strong {
+  color: black;
+}
+
+.messageTitle span {
+  font-weight: bolder;
+  color: #661406;
+  font-size: 20px;
+  margin-bottom: 5px;
+  display: block;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+.messageTitle .remove {
+  float:right;
+}
+
+.messageTitle .remove span {
+  color: lightgrey;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.messageTitle .remove span:hover {
+  color: darkgray;
+  cursor: pointer;
+}
+
+.messageContent p {
+  padding-right: 30px;
+}
+
+footer {
+  bottom: 0;
+  right: 0;
+  width:100%;
+  background-color: #222;
+  color: white;
+  height: 35px;
+}
+
+.view {
+  height: 100%;
+  width: 100%;
+  margin-top: 60px;
+  overflow-y: auto;
+}
+
+.middle {
+  height: 825px;
+  margin-bottom: -35px;
+  /*just build stuff*/
+  /*background-color: #f4f4f4;
+  border-left: 1px solid black;*/
+  padding: 0;
+}
+
+.floatbox {
+  min-height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.75);
+  margin: 15px 0 25px 0;
+
+  padding: 0 0 10px 0;
+}
+
+.floatbox .title {
+  text-align: center;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.5);
+  color: white;
+  text-shadow: 0 0 2px rgba(0,0,0,.5);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.whoIsHome .title {
+  background-color: #661406;
+}
+
+ .fitbit {
+  background-color: #4AC1C0;
+}
+
+.table {
+  height: 228px;
+  border: 1px inset lightgray;
+  margin: 12.5px;
+  width: auto;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.table tr {
+  border: 1px solid #dedede;
+  border-collapse: collapse;
+  padding: 5px;
+  width: inherit;
+  height: 25px;
+  }
+
+
+table, .table td {
+  width: 100%;
+}
+.table tr:nth-child(odd) {
+  background-color: #dedede;
+}
+
+.table tr:nth-child(even) {
+  background-color: white;
+}
+
+.table tr:first-child, {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+
+.table tr:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
+.calendar {
+  margin: auto;
+  padding-top: 25px;
+  text-align: center;
+}
+
+.calendar iframe {
+  border-radius: 15px;
+}

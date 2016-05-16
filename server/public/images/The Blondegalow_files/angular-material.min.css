@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="MainApp">
+  <head>
+    <meta charset="utf-8">
+    <title>The Blondegalow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-aria.min.js"></script>
+    <script src="vendor/angular/angular-animate.min.js"></script>
+    <script src="vendor/angular/angular-material-calendar.min.js"></script>
+    <script src="vendor/angular/angular-material.min.js"></script>
+    <script src="vendor/angular/angular-route.min.js"></script>
+
+    <script src="assets/scripts/main.js"></script>
+
+    <base href="/">
+  </head>
+  <body>
+
+  <header class="top" ng-controller="HeaderController">
+    <div class="headerText">
+    <h3>Welcome, {{user.info.display_name}}</h3>
+    </div>
+    <a href="/logout" target="_self"><div class="logout hvr-rectangle-out">
+      <h6>Logout</h6>
+    </div></a>
+  </header>
+
+  <div class="spacer clearfix"></div>
+
+  <div class="view container-fluid">
+      <div class="col-sm-4 column left">
+          <div class="floatbox whoIsHome" ng-controller="WhoIsHomeController">
+            <div class="title whoIsHome">
+              <h5>Who is home?</h5>
+            </div>
+            <div class="table">
+             <table>
+              <tr ng-repeat="person in house track by $index"><td>{{person}}</td></tr>
+
+             </table>
+            </div>
+
+          </div>
+
+          <div class="floatbox" ng-controller="WhoIsHomeController">
+            <div class="title fitbit">
+              <h5>FitBit Leaderboard</h5>
+            </div>
+            <div class="fitbit">
+            </div>
+
+          </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-8 column middle">
+        <div class="subnav" ng-controller="HeaderController">
+          <div class="subheading messageHead" ng-click="messages()" ng-class="selected.messages"><h6>Messages</h6></div>
+          <div class="subheading calendarHead" ng-click="calendar()" ng-class="selected.calendar"><h6>Calendar</h6></div>
+          <div class="subheading choresHead" ng-click="chores()" ng-class="selected.chores"><h6>Chores</h6></div>
+          <a href="/calendar"><div class="subheading"><h6>Messages</h6></div></a>
+          <a href="/calendar"><div class="subheading"><h6>Messages</h6></div></a>
+
+        </div>
+        <div ng-view>
+
+        </div>
+
+      </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+  </div> <!-- ngView -->
+
+  <footer class="clearfix footer">
+    this is the footer
+  </footer>
+
+  </body>
+</html>

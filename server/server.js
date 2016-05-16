@@ -6,6 +6,7 @@ var session = require('express-session'); // session tracking module
 var initializeDB = require('./db/connection').initializeDB;
 var connectionString = require('./db/connection').connectionString;
 var pgSession = require('connect-pg-simple')(session);
+var dotenv = require('dotenv').config();
 
 
 /// OAuth ///
@@ -25,6 +26,9 @@ var success = require('./routes/success');
 var fail = require('./routes/fail');
 var auth = require('./routes/auth');
 var message = require('./routes/message');
+var mac = require('./routes/mac');
+var chores = require('./routes/chores');
+var grocery = require('./routes/grocery');
 
 //////////// config /////////////
 app.use(express.static('server/public'));
@@ -55,6 +59,9 @@ app.use('/success', success);
 app.use('/fail', fail);
 app.use('/auth', auth);
 app.use('/message', message);
+app.use('/mac', mac);
+app.use('/chore', chores);
+app.use('/grocery', grocery);
 
 
 app.get('/*', function(req, res){
@@ -79,20 +86,16 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
             var query = client.query("SELECT * FROM users WHERE username = $1", [username]);
 
             query.on('row', function(row) {
-              console.log('User obj', row, 'Password', password);
               user = row;
 
             });
 
             // close connection after data get
             query.on('end', function() {
-              console.log(user, 'user');
               if(!user.username) {
-                console.log('first if');
                 done(null, false, {message: req.flash('Incorrect username')});
 
               } else if(encryptLib.comparePassword(password, user.password)) {
-                console.log('match!');
                 done(null, user);
               } else {
                 done(null, false, {message: req.flash('Incorrect username and password.')});
@@ -121,7 +124,6 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
        var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
 
        query.on('row', function(row) {
-         console.log('User row', row);
          user = row;
          done(null, user);
        });

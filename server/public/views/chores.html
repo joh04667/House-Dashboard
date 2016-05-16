@@ -1,1 +1,65 @@
-<h1>Chores</h1>
+<div class="chores">
+
+  <div class="modal fade" id="choreModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add New Chore</h4>
+          </div>
+          <div class="modal-body">
+            <form class="chore-form">
+              <label>Add Chore</label>
+              <input type="text" ng-model="chore.task" required>
+              <label>Assign To:</label>
+                <select ng-model="chore.assigned_to" required>
+                  <option ng-value="Kyle">Kyle</option>
+                  <option ng-value="Sarah">Sarah</option>
+                  <option ng-value="Mikayla">Mikayla</option>
+                </select>
+              <input type="submit" class="btn btn-submit" ng-click="postChore()" data-dismiss="modal">
+            </form>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div> -->
+        </div>
+
+      </div>
+    </div>
+
+
+  <div class="chore-box">
+    <div class="chore-title">
+        <h2>Chores</h2>
+    </div>
+
+    <div class="chore-list">
+      <table>
+      <th>Task</th> <th>Date Added</th> <th>Added by</th> <th>Assigned To:</th> <th>Completed By:</th> <th>Date Completed:</th> <th>Done?</th>
+      <tr ng-repeat="chore in choreList track by $index" ng-class="checkComplete(chore)" >
+        <td>{{chore.task}}</td>
+        <td>{{chore.date_added | date:"mediumDate"}}</td>
+        <td>{{chore.display_name}}</td>
+        <td>{{chore.assigned_to}}</td>
+        <td>{{chore.completed_by}}</td>
+        <td>{{chore.date_completed | date:"mediumDate"}}</td>
+        <td><button ng-click="complete(chore)">{{chore.completeText}}</button></td>
+      </tr>
+      <tr ng-repeat="space in spacer track by $index" class="chore-spacer">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </table>
+    </div>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#choreModal">Add New Chore</button>
+  </div>
+
+
+</div>

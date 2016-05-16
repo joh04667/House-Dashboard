@@ -1,0 +1,57 @@
+<div class="groceries">
+
+
+  <div class="modal fade" id="groceryModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content modal-sm">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add New Grocery Item</h4>
+          </div>
+          <div class="modal-body">
+            <form class="chore-form">
+              <label>Add Item:</label>
+              <input type="text" ng-model="groceryItem" required>
+              <input type="submit" class="btn btn-submit" ng-click="submit()" data-dismiss="modal">
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+<div class="grocery-box">
+  <div class="grocery-title">
+      <h2>Grocery List</h2>
+  </div>
+
+  <div class="grocery-list">
+    <table>
+    <th>Item</th> <th>Date Added</th> <th>Added by</th> <th> </th> <th class="lastHeading">✓</th>
+    <tr ng-repeat="item in groceryList track by $index" ng-class="checkComplete(item)" >
+      <td>{{item.item}}</td>
+      <td>{{item.date_added | date:'mediumDate'}}</td>
+      <td>{{item.name}}</td>
+      <td ng-if="item.completed_by">{{item.completed_by}} got it</td>
+      <td ng-if="!item.completed_by"> </td>
+      <td><button class="grocery-got" ng-click="complete(item)">{{item.completeText}}</button></td>
+    </tr>
+    <tr ng-repeat="space in spacer track by $index">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    <tr>
+  </table>
+  </div>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#groceryModal">Add New Grocery Item</button>
+</div>
+
+
+</div>

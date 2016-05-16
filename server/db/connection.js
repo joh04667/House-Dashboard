@@ -48,10 +48,37 @@ function initializeDB(){
         done();
     });
 
+    var query = client.query(
+      'CREATE TABLE IF NOT EXISTS mac(' +
+      'id SERIAL PRIMARY KEY,' +
+      'name TEXT NOT NULL,' +
+      'mac TEXT NOT NULL);'
+    );
+    query.on('end', function(){
+      console.log('mac table created');
+      done();
+    });
+    
+      var query = client.query(
+        'CREATE TABLE IF NOT EXISTS groceries(' +
+        'id SERIAL PRIMARY KEY,' +
+        'item varchar(100) NOT NULL,' +
+        'date_added DATE NOT NULL,' +
+        'name TEXT NOT NULL,' +
+        'completed_by varchar(255),' +
+        'date_completed DATE);'
+      );
+      query.on('end', function(){
+        console.log('grocery table created');
+        done();
+  });
+
       var query = client.query(
         'CREATE TABLE IF NOT EXISTS chores(' +
         'id SERIAL PRIMARY KEY,' +
         'task varchar(255) NOT NULL,' +
+        'assigned_to varchar(15) NOT NULL,' +
+        'completed_by varchar(29),' +
         'date_added DATE NOT NULL,' +
         'date_completed DATE,' +
         'user_id INT REFERENCES users(id));'

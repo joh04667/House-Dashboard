@@ -9,14 +9,14 @@ app.controller('LoginController', ['$scope', '$http', '$location', function($sco
 
   $scope.login = function() {
     $scope.error = false;
-    console.log($scope.user);
     $http.post('/', $scope.user).then(function(response) {
-      console.log(response);
+      console.log('res', response);
       if(response.status === 269) {
       window.location.assign('/main');
     }
-      if(respone.status === 301) {
-      $scope.error = true;
+      if(response.status === 250) {
+        console.log('wrong');
+        alert('Incorrect username or password');
       }
     });
   };
@@ -34,6 +34,7 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
 
       $scope.register = function() {
         /// looots of error handling
+        $scope.error = {};
         if($scope.user.password !== $scope.user.verifyPassword) {
           $scope.error.pwMatch = true;
           $scope.user.password = "";
@@ -42,7 +43,6 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
           console.log('too short');
           $scope.error.username = true;
         } else if($scope.user.password.length < 6) {
-          console.log('shawty');
           $scope.error.password = true;
         } else {
           $scope.error = {};
@@ -50,9 +50,9 @@ app.controller('RegisterController', ['$scope', '$http', function($scope, $http)
             method: 'post',
             url: '/register',
             data: $scope.user
-          }).then(function successCallback(response) {
+          }).then(function(response) {
             console.log(response);
-            if(response.status == 418) {console.log('teapot');}
+            if(response.status == 275) {$scope.error.name = true}
             $scope.user = {};
 
             //TODO: upon confirmation of db entry, add a modal or something that confirms this and redirect

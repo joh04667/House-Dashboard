@@ -6,19 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/placeholder.css">
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-animate.min.js"></script>
+    <!-- <script src="vendor/angular/angular-material.min.js"></script> -->
     <script src="vendor/angular/angular-route.min.js"></script>
+    <script src="vendor/bootstrap/modal.js"></script>
+
     <script src="assets/scripts/main.js"></script>
 
     <base href="/">
   </head>
-  <body>
+  <body class="red">
 
   <header class="top" ng-controller="HeaderController">
     <div class="headerText">
     <h3>Welcome, {{user.info.display_name}}</h3>
     </div>
+    <div class="logout hvr-rectangle-out admin" ng-if="user.info.permissions == 'admin'">
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#adminModal">Admin</button>
+
+    </div>
+
     <a href="/logout" target="_self"><div class="logout hvr-rectangle-out">
       <h6>Logout</h6>
     </div></a>
@@ -27,25 +39,92 @@
   <div class="spacer clearfix"></div>
 
   <div class="view container-fluid">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="adminModal" role="dialog">
+      <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div ng-controller="ModalController" class="modal-content modal-lg">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Administrator Functions</h4>
+            </div>
+            <div class="modal-body">
+              <div class="mac">
+                <h5>Add new MAC address:</h5>
+                 <form>
+                  <label>Name:</label>
+                     <input type="name" ng-model="name" required>
+                     <input type="submit" ng-click="submit()">
+
+                 <label>MAC address:</label>
+                    <input type="text" ng-model="macAddress" required>
+
+                 </form>
+                <div class="modalTable">
+                  <h5>Saved MAC addresses:</h5>
+                    <div class="mac-table">
+                      <table>
+                        <th>Name</th> <th>MAC address</th> <th> Remove       </th>
+                        <tr ng-repeat="mac in macs track by $index"><td>{{mac.name}}</td> <td>{{mac.mac}}</td><td><button ng-click="remove(mac)">
+                          <span class="remove glyphicon glyphicon-remove"></span>
+                            </button></td></tr>
+                      </table>
+                    </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <div class="col-sm-4 column left">
           <div class="floatbox whoIsHome" ng-controller="WhoIsHomeController">
             <div class="title whoIsHome">
               <h5>Who is home?</h5>
+              <button class="refresh-button" ng-click="getRouterData()">&#8635</button>
             </div>
-            <div class="table">
+
+            <div class="table" ng-class="error.load" > <!-- ng-show="!error.loading" -->
+              <div class="table" id="table-load" ng-show="error.loading">
+                <div class="spin-container">
+                 <span class="glyphicon glyphicon-repeat glyphicon-repeat-animate"></span>
+                </div>
+              </div>
+
+              <div class="table" id="table-error" ng-show="error.router">
+                <span class="glyphicon glyphicon-ban-circle"></span>
+                  <br>
+                <p>Data could not be retrieved.</p>
+                <p>Tell Kyle to fix it.</p>
+              </div>
+
              <table>
-              <tr ng-repeat="person in house track by $index"><td>{{person}}</td></tr>
+              <tr ng-repeat="person in house track by $index"><td>{{person.name}}</td></tr>
 
              </table>
             </div>
-
           </div>
 
-          <div class="floatbox" ng-controller="WhoIsHomeController">
-            <div class="title fitbit">
+          <div class="floatbox">
+            <div class="title fitbit" id="fitbit-title">
               <h5>FitBit Leaderboard</h5>
             </div>
-            <div class="fitbit">
+            <div class="fitbit" >
+              <div class="table">
+                <button class="btn btn-info fitbit-button">Get FitBit Challenge Info</button>
+              </div>
             </div>
 
           </div>
@@ -53,11 +132,10 @@
 
       <div class="col-xs-12 col-sm-8 column middle">
         <div class="subnav" ng-controller="HeaderController">
-          <div class="subheading messageHead" ng-click="messages()" ng-class="selected.messages"><h6>Messages</h6></div>
-          <div class="subheading calendarHead" ng-click="calendar()" ng-class="selected.calendar"><h6>Calendar</h6></div>
-          <div class="subheading choresHead" ng-click="chores()" ng-class="selected.chores"><h6>Chores</h6></div>
-          <a href="/calendar"><div class="subheading"><h6>Messages</h6></div></a>
-          <a href="/calendar"><div class="subheading"><h6>Messages</h6></div></a>
+          <div class="subheading messageHead hvr-bounce-to-bottom" ng-click="messages()" ng-class="selected.messages"><h6>Messages</h6></div>
+          <div class="subheading calendarHead hvr-bounce-to-bottom" ng-click="calendar()" ng-class="selected.calendar"><h6>Calendar</h6></div>
+          <div class="subheading choresHead hvr-bounce-to-bottom" ng-click="chores()" ng-class="selected.chores"><h6>Chores</h6></div>
+          <div class="subheading groceryHead hvr-bounce-to-bottom" ng-click="groceries()" ng-class="selected.groceries"><h6>Grocery List</h6></div>
 
         </div>
         <div ng-view>
@@ -67,7 +145,7 @@
       </div>
 
 
-      </div>
+
 
 
 
@@ -81,7 +159,7 @@
   </div> <!-- ngView -->
 
   <footer class="clearfix footer">
-    this is the footer
+    <p>Thanks for visiting!</p>
   </footer>
 
   </body>
