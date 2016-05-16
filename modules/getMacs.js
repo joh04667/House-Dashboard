@@ -29,27 +29,39 @@ var params = {
   // removeEcho: 4
 };
 var result = [];
-
+// var errir = {};
+// var tuna;
+// var obj = {first: 'val'};
+//
 // try {
-//   child_process.execSync('telnet ' + params.host);
+//   child_process.execSync('telnet blondegalow.hopto.org');
 // } catch(e) {
-//   var err = e;
-//   err.error = true;
-//   callback('err');
+//   errir.error = true;
+//   console.log('typeof', typeof(e));
+//   console.log('FUCK YOU', e[Object.keys(e)[2]]);
+//   tuna = e;
 // } finally {
-//   if(!err.error) {
-//   console.log('dildo', err.error);
+//   if(errir.error) {
+//   console.log('dildo', tuna);
+//   callback('err');
+//   return 'error';
+// } else {
 
-
-connection.connect(params), function(error) {
+connection.connect(params); /*, function(error) {
   console.log('error', error);
   callback(err);
-};
+};*/
 
+connection.once('error', function(error) {
+  console.log('you got an error', error);
+
+});
 
 connection.once('ready', function(prompt) {
-  connection.exec('arp show', function(err, response) {
-    if(err) {console.log('erronio', err); callback(err)} else {
+  connection.exec('arp show', function(error, response) {
+    if(error) {console.log('erronio', error);
+    callback('err');
+   } else {
     connection.end().then(function() {
     var result = response.match(/\w\w:\w\w:\w\w:\w\w:\w\w:\w\w/gi);
     console.log('mac adds are:', result);
@@ -58,9 +70,10 @@ connection.once('ready', function(prompt) {
    }
   });
  });
-// };
+ 
+};
 
-}}
+
 
 
 

@@ -59,28 +59,28 @@ app.controller('HeaderController', ['UserService', '$scope', '$http', '$location
 
   $scope.messages = function() {
     clearClass();
-    $scope.selected.messages = "selected";
+    $scope.selected.messages = "message-select";
     $location.path('/main');
     $('body').addClass('red');
   };
 
   $scope.calendar = function() {
     clearClass();
-    $scope.selected.calendar = "selected";
+    $scope.selected.calendar = "calendar-select";
     $location.path('/calendar');
     $('body').addClass('blue');
   };
 
   $scope.chores = function() {
     clearClass();
-    $scope.selected.chores = "selected";
+    $scope.selected.chores = "chores-select";
     $location.path('/chores');
     $('body').addClass('yellow');
   };
 
   $scope.groceries = function() {
     clearClass();
-    $scope.selected.groceries = "selected";
+    $scope.selected.groceries = "grocery-select";
     $location.path('/groceries');
     $('body').addClass('purple');
   };

@@ -8,7 +8,7 @@ html, body{
 }
 
 .red {
-  background: -webkit-linear-gradient(top, rgba(175,104,93,1) 0%,rgba(219,219,219,1) 50%,rgba(219,219,219,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(170,90,80,1) 0%,rgba(219,219,219,1) 50%,rgba(219,219,219,1) 100%);
 }
 
 .blue {
@@ -54,7 +54,7 @@ html, body{
 .logout {
   text-align: center;
   padding: 14px 20px;
-  width: 10%;
+  width: 115px;
   right: 0;
   top:0;
   display: inline-block;
@@ -65,7 +65,12 @@ html, body{
 
 .admin {
   position: fixed;
-  right: 10%;
+  right: 115px;
+}
+
+.admin button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 
 /*modal*/
@@ -127,51 +132,76 @@ html, body{
 .subnav {
   height: 52px;
   width: 100%;
-  background-color: black;
   box-shadow: 0 5px 2px -2px rgba(0,0,0,.5);
   border-bottom: 1px solid darkgrey;
-  background: grey url('http://www.youdiamonds.com/wp-content/uploads/2015/04/youdiamonds-newbg3.jpg') fixed repeat;
+  background-color: rgba(0,0,0,0);
+    /*border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;*/
+
 }
 
 .subheading {
   text-align: center;
   color: white;
-  width: 20%;
+  width: 25%;
   float: left;
   height: 52px;
   vertical-align: middle;
   padding-top: 20px;
   border-right: 2px groove #dbdbdb;
   text-shadow: 0 0 5px rgba(0,0,0,.75);
+  background: -webkit-linear-gradient(top, rgba(43,50,59,1) 0%,rgba(43,50,59,1) 1%,rgba(89,89,89,1) 13%,rgba(43,50,59,1) 16%,rgba(36,44,53,1) 24%,rgba(71,71,71,1) 39%,rgba(102,102,102,1) 66%,rgba(102,102,102,1) 67%,rgba(102,102,102,0.6) 85%,rgba(102,102,102,0.1) 90%,rgba(102,102,102,1) 100%); /* Chrome10-25,Safari5.1-6 */
   transition: color .5s ease-out, border-bottom .5s, text-shadow .5s;
 }
 
+
+
 .subheading h6 {
   margin: auto;
+  font-size: 15px;
 }
 
 .subheading:hover {
   cursor:pointer;
 }
 
-.messageHead:hover {
-  text-shadow: 0 0 15px #661406;
-  border-bottom: 2px solid #661406;
+
+.messageHead:before {
+ background: #661406;
 }
 
-.calendarHead:hover {
-  text-shadow: 0 0 15px #4AC1C0;
-  border-bottom: 2px solid #4AC1C0;
+.calendarHead:before {
+ background: #4AC1C0;
 }
 
-.subheading .calendarHead .selected {
-  text-shadow: 0 0 15px #4AC1C0;
-  border-bottom: 2px solid #4AC1C0;
+.choresHead:before {
+ background: #ED9512;
 }
 
-.messageHead .selected {
-  text-shadow: 0 0 20px #661406;
-  border-bottom: 2px solid #661406;
+.groceryHead:before {
+ background: #8506E5;
+}
+
+
+
+
+
+
+
+.subnav .message-select {
+  background: #661406;
+}
+
+.subnav .calendar-select {
+  background: #4AC1C0;
+}
+
+.subnav .chores-select {
+  background: #ED9512;
+}
+
+.subnav .grocery-select {
+  background: #8506E5 ;
 }
 
 .messages {
@@ -485,20 +515,20 @@ footer {
 .whoIsHome h5{
   display: inline-block;
   text-align: center;
+  margin-left: 11%;
 }
 
 .whoIsHome button {
   height: 23px;
   width: 25px;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 15px;
   margin-top: 3px;
   font-size: 20px;
   padding: 0 0 5px 0;
   background-color: #661406;
   border: none;
-  position:absolute;
-  right: 20px;
+  float: right;
 }
 
 .whoIsHome .title {
@@ -628,4 +658,51 @@ table, .table td {
 @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
+}
+
+
+/*hover*/
+/* Bounce To Bottom */
+.hvr-bounce-to-bottom {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.hvr-bounce-to-bottom:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-bounce-to-bottom:hover, .hvr-bounce-to-bottom:focus, .hvr-bounce-to-bottom:active {
+  color: white;
+}
+.hvr-bounce-to-bottom:hover:before, .hvr-bounce-to-bottom:focus:before, .hvr-bounce-to-bottom:active:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }

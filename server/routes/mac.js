@@ -24,8 +24,7 @@ router.get('/', function(req, res) {
 
 
 router.post('/', function(req, res) {
-  if(!req.isAuthenticated()) {res.send('ERROR no auth');}
-  else {
+
     pg.connect(connectionString, function(err, client) {
       console.log('saving', req.body);
       var query = client.query('INSERT INTO mac (name, mac) VALUES ($1, $2)', [req.body.name, req.body.mac]);
@@ -34,12 +33,10 @@ router.post('/', function(req, res) {
         res.sendStatus(200);
       });
   });
- }
 });
 
 router.delete('/:id', function(req, res){
-  if(!req.isAuthenticated()) {res.send('ERROR no auth');}
-  else {
+
     pg.connect(connectionString, function(err, client) {
 
       var query = client.query('DELETE FROM mac WHERE id = $1;', [req.params.id]);
@@ -48,16 +45,15 @@ router.delete('/:id', function(req, res){
         res.sendStatus(200);
       });
    });
-  }
 });
 
 router.get('/all', function(req, res) {
-  if(!req.isAuthenticated()) {res.send('ERROR no auth');}
-  else {
     getMacs(function(result) {
-      // if(result === 'err') {
-      //   res.sendStatus(210);
-      // }
+      if(result === 'err') {
+        res.send('err');
+
+        console.log('sent err');
+      } else {
       console.log('result is', result);
       var match = [];
 
@@ -70,17 +66,20 @@ router.get('/all', function(req, res) {
           console.log('match is', match);
         });
 
+        // query.on('err', function(err) {
+        //   console.log(err);
+        //   res.send(err);
+        // });
+
 
         query.on('end', function(){
           client.end();
-          console.log('ended');
           res.send(match);
 
         });
       });
-
+     }
     });
-  }
 });
 
 module.exports = router;
