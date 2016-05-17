@@ -5,8 +5,7 @@ var connectionString = require('../db/connection').connectionString;
 var getMacs = require('../../modules/getMacs');
 
 router.get('/', function(req, res) {
-  if(!req.isAuthenticated()) {res.send('ERROR no auth');}
-  else {
+  console.log(req.ip);
     pg.connect(connectionString, function(err, client) {
 
       var query = client.query('SELECT * FROM mac;');
@@ -18,7 +17,7 @@ router.get('/', function(req, res) {
         res.send(results);
       });
   });
- }
+ 
 });
 
 
