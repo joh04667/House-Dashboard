@@ -148,31 +148,31 @@ app.controller('ModalController', ['UserService', '$scope', '$http', '$location'
 app.controller('WhoIsHomeController', ['UserService', '$scope', '$http', function(UserService, $scope, $http) {
 
           $scope.user = UserService.user;
-          $scope.house = ["","","","","","","",""];
+          $scope.house = [{name: 'Kyle'},{name: 'Mikayla'},{name: 'Sarah'},{name: 'Dom'},{name: 'Erick'},{name: 'Piper'},'','',''];
           $scope.error = {router: false};
 
-          $scope.getRouterData = function() {
-            $scope.error.loading = true;
-            $scope.error.router = false;
-              $http.get('/mac/all').then(function(response) {
-                $scope.error.loading = false;
-
-                if(response.status === 210) {
-                  $scope.error.router = true;
-                } else {
-                  $scope.house = response.data;
-                  $scope.house.push({name: 'Piper'});
-                }
-                  while($scope.house.length <= 8) {
-                    $scope.house.push("");
-               }
-               console.log('house', $scope.house);
-
-
-            });
-          };
-
-          $scope.getRouterData();
+          // $scope.getRouterData = function() {
+          //   $scope.error.loading = true;
+          //   $scope.error.router = false;
+          //     $http.get('/mac/all').then(function(response) {
+          //       $scope.error.loading = false;
+          //
+          //       if(response.status === 210) {
+          //         $scope.error.router = true;
+          //       } else {
+          //         $scope.house = response.data;
+          //         $scope.house.push({name: 'Piper'});
+          //       }
+          //         while($scope.house.length <= 8) {
+          //           $scope.house.push("");
+          //      }
+          //      console.log('house', $scope.house);
+          //
+          //
+          //   });
+          // };
+          //
+          // $scope.getRouterData();
 
 }]); //who is home control end
 

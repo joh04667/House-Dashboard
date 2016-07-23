@@ -12,8 +12,6 @@ var check = child_process.spawnSync('telnet', [process.env.HOST_URL], {timeout: 
 
 
 if(check.stdout.toString().match(/Connected to/gi)) {
-  console.log(typeof(process.env.R_PASSWORD), process.env.R_USERNAME, process.env.HOST_URL);
-  console.log('woo');
   isConnected = true;
   checkMacs(function(res) {
     cb(res);
@@ -63,14 +61,13 @@ connection.once('ready', function(prompt) {
    } else {
     connection.end().then(function() {
     var result = response.match(/\w\w:\w\w:\w\w:\w\w:\w\w:\w\w/gi);
-    console.log('mac adds are:', result);
     callback(result);
    });
    }
   });
  });
 
-};
+}
 
 
 

@@ -11,7 +11,6 @@ var publicAPI = {
     return encryptedPassword;
   },
   comparePassword: function(candidatePassword, storedPassword) {
-    console.log('Comparing', candidatePassword, 'to', storedPassword);
     return bcrypt.compareSync(candidatePassword, storedPassword);
   }
 };
